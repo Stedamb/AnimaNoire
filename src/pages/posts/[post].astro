@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import { supabase } from "@/db/supabase";
+import PostPage from "@/components/PostPage";
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}')
+
+export async function getStaticPaths() {
+  const { data: posts, error } = await supabase.from("posts").select("*");
+
+  if (error || !posts) {
+    console.error("Error fetching post slugs:", error);
+    return [];
+  }
+
+  return posts.map((post) => ({
+    params: { post: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const imageKey = Object.keys(images).find((key) => key.includes(post.slug));
+
+let image = null;
+if (imageKey) {
+  const imageModule = await images[imageKey]();
+  image = imageModule.default;
+}
+---
+
+<Layout title={post.title}> 
+  <main>
+    <PostPage post={post}>
+      {image && (
+        <Image src={image} alt={post.title} class="h-full object-cover" />
+      )}
+    </PostPage>
+  </main>
+</Layout>

@@ -15,7 +15,7 @@ import 'swiper/css/scrollbar';
 import { merchItems } from '@/data/merch';
 
 const Reviews = () => {
-    const featurableWidgetId = "3669524a-ad1f-43aa-b568-5819d4a2a1d3";
+    const featurableWidgetId = "";
 
     return (
         <div className="relative mt-64">

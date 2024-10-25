@@ -11,7 +11,7 @@ import 'swiper/css/scrollbar';
 const Artists = () => {
     return (
         <div className="relative grid grid-cols-1 lg:grid-cols-2 pb-16">
-            <div className="flex flex-col items-center lg:items-start gap-4 px-16 pt-16 pb-8 xl:py-32">
+            <div className="flex flex-col items-center lg:items-start gap-4 px-16 pt-16 pb-8 xl:py-32 xl:pl-64">
                 <div className="text-6xl font-title font-bold mb-4 RevealAnimation">Artisti</div>
                 <p className="text-lg text-center lg:text-start mb-4 RevealAnimation">
                     Embark on a thrilling journey through the picturesque landscapes of the Netherlands.

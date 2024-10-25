@@ -26,31 +26,31 @@
 }
 
 @media (max-width: 640px) {
-    .container-sm {
+    .container-sm.container {
         max-width: calc(100% - 2 * var(--horizontal-spacing));
     }
 }
 
 @media (max-width: 768px) {
-    .container-md {
+    .container-md.container {
         max-width: calc(100% - 2 * var(--horizontal-spacing));
     }
 }
 
 @media (max-width: 1024px) {
-    .container-lg {
+    .container-lg.container {
         max-width: calc(100% - 2 * var(--horizontal-spacing));
     }
 }
 
 @media (max-width: 1280px) {
-    .container-xl {
+    .container-xl.container {
         max-width: calc(100% - 2 * var(--horizontal-spacing));
     }
 }
 
 @media (max-width: 1536px) {
-    .container-2xl {
+    .container-2xl.container {
         max-width: calc(100% - 2 * var(--horizontal-spacing));
     }
 }

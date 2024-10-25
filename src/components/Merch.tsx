@@ -16,7 +16,7 @@ const Merch = () => {
         <div className="relative container-xl mt-16">
             <div className="flex flex-col items-center gap-4">
                 <div className="text-6xl font-title font-bold mb-4 RevealAnimation">Merchandise</div>
-                <p className="text-lg text-center mb-4 RevealAnimation">
+                <p className="text-lg text-center mb-4 px-8 RevealAnimation">
                     Embark on a thrilling journey through the picturesque landscapes of the Netherlands.
                     Glide along smooth bike paths, explore charming Dutch towns, and experience the
                     freedom of longboarding in one of Europe's most bike-friendly countries.
@@ -26,8 +26,18 @@ const Merch = () => {
             <div className="w-full flex items-center pt-16">
                 <Swiper
                     modules={[A11y]}
-                    spaceBetween={80}
-                    slidesPerView={3}
+                    spaceBetween={20}
+                    slidesPerView={2}
+                    centeredSlides={true}
+                    initialSlide={Math.floor(merchItems.length / 2)}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 1.5,
+                        },
+                        768: {
+                            slidesPerView: 3,
+                        },
+                    }}
                 >
                     {merchItems.map((item, index) => (
                         <SwiperSlide key={index}>

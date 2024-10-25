@@ -13,16 +13,23 @@ import { merchItems } from '@/data/merch';
 
 const Gallery = () => {
     return (
-        <div className="relative mt-64">
+        <div className="relative pt-32">
             <div className="flex flex-col items-center gap-4">
                 <div className="text-6xl font-title font-bold mb-4 RevealAnimation">Gallery</div>
             </div>
-            <div className="w-full flex items-center pt-16">
+            <div className="w-full flex items-center pt-8">
                 <Swiper
                     modules={[A11y]}
-                    spaceBetween={80}
-                    slidesPerView={1.5}
+                    spaceBetween={20}
+                    slidesPerView={1.2}
                     centeredSlides={true}
+                    initialSlide={2}
+                    breakpoints={{
+                        768: {
+                          slidesPerView: 1.5,
+                          spaceBetween: 60
+                        },
+                      }}
                 >
                     {merchItems.map((item, index) => (
                         <SwiperSlide key={index}>

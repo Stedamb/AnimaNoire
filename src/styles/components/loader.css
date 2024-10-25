@@ -1,7 +1,41 @@
+/* Loader Styles */
 .Loader {
     background-color: var(--background);
     height: 100vh;
     position: fixed;
     width: 100vw;
     z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    animation: fadeOut 2s forwards 2s; /* Animation to fade out loader */
+    
+    .Logo {
+        animation: fadeIn 2s forwards .5s; /* Animation to fade out loader */
+
+    }
 }
+
+/* Fade-out animation */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        visibility: hidden;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+
+    }
+}
+

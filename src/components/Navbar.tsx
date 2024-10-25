@@ -1,8 +1,8 @@
-import DarkModeToggle from "@/components/ui/darkModeToggle"
 import { Button } from "./ui/button";
-import { Sidebar, SidebarContent, SidebarFooter, SidebarGroup, SidebarGroupContent, SidebarGroupLabel, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem, SidebarProvider, SidebarTrigger } from "./ui/sidebar";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { Phone } from "lucide-react";
+import { MenuIcon, Phone } from "lucide-react";
+import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
+import { useState } from "react";
 
 const Navbar = () => {
 
@@ -21,40 +21,41 @@ const Navbar = () => {
         }
     ]
     const isMobile = useIsMobile();
+    const [open, setOpen] = useState(false);
 
     return (
         <div className="absolute top-0 left-0 w-full z-10">
+            <Button variant="linkLight" size="sm" className="absolute right-0 h-fit p-6 md:hidden" asChild>
+                <a className="text-xl" href="/">
+                    <Phone className="size-8" />
+                </a>
+            </Button>
             {isMobile ? (
-                <SidebarProvider>
-                    <Sidebar>
-                        <SidebarContent>
-                            <SidebarGroup>
-                                <SidebarGroupLabel>Menu</SidebarGroupLabel>
-                                <SidebarGroupContent>
-                                    <SidebarMenu>
-                                        {items.map((item) => (
-                                            <SidebarMenuItem key={item.title}>
-                                                <SidebarMenuButton asChild>
-                                                    <a className="text-xl mt-4" href={item.url}>
-                                                        <span>{item.title}</span>
-                                                    </a>
-                                                </SidebarMenuButton>
-                                            </SidebarMenuItem>
-                                        ))}
-                                    </SidebarMenu>
-                                </SidebarGroupContent>
-                            </SidebarGroup>
-                        </SidebarContent>
-                    </Sidebar>
-                    <main>
-                        <SidebarTrigger />
-                    </main>
-                    <Button variant="linkLight" size="sm" className="ml-auto h-fit p-4" asChild>
-                        <a className="text-xl" href="/">
-                            <Phone className="size-8" />
-                        </a>
-                    </Button>
-                </SidebarProvider>
+                <Sheet open={open} onOpenChange={setOpen}>
+
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="icon" className="md:hidden size-12 m-4">
+                            <MenuIcon className="size-16" />
+                        </Button>
+                    </SheetTrigger>
+
+                    <SheetContent side="left" className="bg-background">
+                        <div className="flex flex-col items-start pt-8">
+                            {items.map((item, index) => (
+                                <Button
+                                    key={index}
+                                    variant="link"
+                                    onClick={() => {
+                                        setOpen(false);
+                                    }}
+                                >
+                                    <a className="text-3xl text-text font-title" href={item.url}>{item.title}</a>
+                                </Button>
+                            ))}
+                        </div>
+                    </SheetContent>
+
+                </Sheet>
             ) : (
                 <div className="flex p-4">
                     {items.map((item) => (

@@ -24,7 +24,7 @@ const Introduction = () => {
         alt="Logo"
         width="640"
         height="640"
-        className="absolute top-[22%] lg:-top-[20%] w-full RevealAnimation"
+        className="absolute top-[22%] lg:-top-[20%] w-full -z-10 RevealAnimation"
       />
     </div>
   );

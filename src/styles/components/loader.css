@@ -9,11 +9,10 @@
     align-items: center;
     justify-content: center;
     opacity: 1;
-    animation: fadeOut 2s forwards 2s; /* Animation to fade out loader */
+    animation: fadeOut 2s forwards 2s;
     
     .Logo {
-        animation: fadeIn 2s forwards .5s; /* Animation to fade out loader */
-
+        animation: fadeIn 2s forwards .5s;
     }
 }
 

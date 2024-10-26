@@ -11,7 +11,7 @@ import 'swiper/css/scrollbar';
 const Artists = () => {
     return (
         <div className="relative grid grid-cols-1 lg:grid-cols-2 pb-16">
-            <div className="flex flex-col items-center lg:items-start gap-4 px-16 pt-16 pb-8 xl:py-32 xl:pl-64">
+            <div className="flex flex-col items-center gap-4 pt-16 pb-8 px-8 lg:items-start lg:max-w-[640px] lg:ml-auto lg:pr-16 xl:py-32">
                 <div className="text-6xl font-title font-bold mb-4 RevealAnimation">Artisti</div>
                 <p className="text-lg text-center lg:text-start mb-4 RevealAnimation">
                     Embark on a thrilling journey through the picturesque landscapes of the Netherlands.
@@ -22,7 +22,7 @@ const Artists = () => {
                     <a href="/artisti">Vedi gli artisti</a>
                 </Button>
             </div>
-            <div className="w-full flex items-center">
+            <div className="flex items-center">
                 <Swiper
                     modules={[A11y]}
                     spaceBetween={30}
@@ -30,12 +30,16 @@ const Artists = () => {
                     centeredSlides={true}
                     breakpoints={{
                         640: {
-                            width: 640,
                             slidesPerView: 1.8,
+                            centeredSlides: true
                         },
-                        768: {
-                            width: 768,
+                        1024: {
                             slidesPerView: 2.2,
+                            centeredSlides: false
+                        },
+                        1400: {
+                            slidesPerView: 3,
+                            centeredSlides: false
                         },
                     }}
                 >
@@ -51,7 +55,6 @@ const Artists = () => {
                 </Swiper>
             </div>
             <div className="flex justify-center pt-8 md:hidden">
-
                 <Button size="md" asChild>
                     <a href="/artisti">Vedi gli artisti</a>
                 </Button>
@@ -61,7 +64,7 @@ const Artists = () => {
                 alt="Logo"
                 width="640"
                 height="640"
-                className="absolute top-1/2 w-[50%] left-1/2 -translate-x-1/2 RevealAnimation"
+                className="absolute top-1/2 w-[50%] left-1/2 -translate-x-1/2 -z-10 RevealAnimation"
             />
         </div>
     );

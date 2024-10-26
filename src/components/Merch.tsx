@@ -27,7 +27,7 @@ const Merch = () => {
                 <Swiper
                     modules={[A11y]}
                     spaceBetween={20}
-                    slidesPerView={2}
+                    slidesPerView={1.3}
                     centeredSlides={true}
                     initialSlide={Math.floor(merchItems.length / 2)}
                     breakpoints={{

@@ -10,7 +10,14 @@ const Loader = () => {
       document.querySelector(".Loader")?.classList.add("hidden");
     }, 2000);
 
-    return () => clearTimeout(timer);
+    const timer2 = setTimeout(() => {
+      document.querySelector(".Loader")?.classList.add("hidden");
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(timer2);
+    };
   }, []);
 
   return (

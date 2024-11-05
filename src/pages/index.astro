@@ -1,12 +1,22 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import Homepage from "@/components/Homepage";
 import Loader from '@/components/Loader';
+import Artists from '@/components/Artists';
+import Gallery from '@/components/Gallery';
+import Introduction from '@/components/Introduction';
+import Merch from '@/components/Merch';
+import Reviews from '@/components/Reviews';
+import Video from '@/components/Video';
 ---
 
 <Layout title="AnimaNoire Tattoo Studio">
-	<Loader client:visible></Loader>
+	<Loader client:only></Loader>
 		<main>
-			<Homepage client:visible />
+			<Video client:visible></Video>
+			<Introduction client:visible></Introduction>
+			<Artists client:visible></Artists>
+			<Merch client:visible></Merch>
+			<Gallery client:visible></Gallery>
+			<Reviews client:visible></Reviews>
 		</main>
 </Layout>

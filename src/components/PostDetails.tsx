@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrowLeft } from "lucide-react";
-import RevealAnimation from "./ui/animations/animations";
 import { getDate } from "@/utils/dateUtils";
 import Markdown from "react-markdown";
 import { Button } from "./ui/button";
@@ -10,7 +9,6 @@ interface PostDetailsProps {
 }
 
 const PostDetails: React.FC<PostDetailsProps> = ({ post }) => {
-    RevealAnimation("RevealAnimation");
 
     return (
         <div className="flex flex-col items-center">

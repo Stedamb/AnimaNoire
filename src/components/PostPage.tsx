@@ -1,8 +1,6 @@
-import RevealAnimation from "./ui/animations/animations";
 import PostDetails from "./PostDetails";
 
 function PostPage({ post, children }: PostPageProps) {
-  RevealAnimation("RevealAnimation");
 
   return (
     <div className="relative">

@@ -1,6 +1,5 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
-import RevealAnimation from "./ui/animations/animations";
 import Markdown from "react-markdown";
 import { Button } from "./ui/button";
 
@@ -10,8 +9,6 @@ interface PostProps {
 }
 
 const Post: React.FC<PostProps> = ({ post, getDayName }) => {
-    RevealAnimation("RevealAnimation");
-
     return (
         <li>
             <div className="RevealAnimation flex flex-col gap-2 mb-8">

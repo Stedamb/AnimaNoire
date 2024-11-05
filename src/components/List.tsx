@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { supabase } from "@/db/supabase";
 import Post from "./Post";
-import RevealAnimation from "./ui/animations/animations";
 import { getDayName } from "@/utils/dateUtils";
 
 function List() {

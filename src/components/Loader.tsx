@@ -5,14 +5,13 @@ const Loader = () => {
     window.scrollTo(0, 0);
     document.body.classList.add('overflow-hidden');
 
-    const timer = setTimeout(() => {
-      document.body.classList.remove('overflow-hidden');
-      document.querySelector(".Loader")?.classList.add("hidden");
-    }, 2000);
-
-    const timer2 = setTimeout(() => {
-      document.querySelector(".Loader")?.classList.add("hidden");
-    }, 3000);
+      const timer = setTimeout(() => {
+        document.body.classList.remove('overflow-hidden');
+      }, 2500);
+      
+      const timer2 = setTimeout(() => {
+        document.querySelector(".Loader")?.classList.add("hidden");
+    }, 4000);
 
     return () => {
       clearTimeout(timer);

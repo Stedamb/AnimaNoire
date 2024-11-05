@@ -1,49 +1,53 @@
+import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
-import RevealAnimation from './ui/animations/animations';
+import { A11y } from 'swiper/modules';
 import { Button } from './ui/button';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import FadeInAnimation from './ui/animations/FadeInAnimation';
 
 import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/scrollbar';
 
 import { merchItems } from '@/data/merch';
 
 const Gallery = () => {
+    const galleryRef = useRef<HTMLDivElement>(null);
+
     return (
-        <div className="relative pt-32">
+        <div ref={galleryRef} className="relative pt-32">
             <div className="flex flex-col items-center gap-4">
-                <div className="text-6xl font-title font-bold mb-4 RevealAnimation">Gallery</div>
+                <FadeInAnimation triggerRef={galleryRef}>
+                    <div className="text-6xl font-title font-bold mb-4">Gallery</div>
+                </FadeInAnimation>
             </div>
-            <div className="w-full flex items-center pt-8">
-                <Swiper
-                    modules={[A11y]}
-                    spaceBetween={20}
-                    slidesPerView={1.2}
-                    centeredSlides={true}
-                    initialSlide={2}
-                    breakpoints={{
-                        768: {
-                          slidesPerView: 1.5,
-                          spaceBetween: 60
-                        },
-                      }}
-                >
-                    {merchItems.map((item, index) => (
-                        <SwiperSlide key={index}>
-                            <img className="w-full h-auto object-cover" src="gallery.jpg" alt={item.title} />
-                        </SwiperSlide>
-                    ))}
+            <FadeInAnimation triggerRef={galleryRef} delay={0.2}>
+                <div className="w-full flex items-center pt-8">
+                    <Swiper
+                        modules={[A11y]}
+                        spaceBetween={20}
+                        slidesPerView={1.2}
+                        centeredSlides={true}
+                        initialSlide={2}
+                        breakpoints={{
+                            768: {
+                                slidesPerView: 1.5,
+                                spaceBetween: 60
+                            },
+                        }}
+                    >
+                        {merchItems.map((item, index) => (
+                            <SwiperSlide key={index}>
+                                <img className="w-full h-auto object-cover" src="gallery.jpg" alt={item.title} />
+                            </SwiperSlide>
+                        ))}
 
-                </Swiper>
-            </div>
+                    </Swiper>
+                </div>
+            </FadeInAnimation>
             <div className="flex justify-center pt-16">
-
-                <Button size="md" asChild>
-                    <a href="/artisti">Vai alla gallery</a>
-                </Button>
+                <FadeInAnimation triggerRef={galleryRef} delay={0.6}>
+                    <Button size="md" asChild>
+                        <a href="/artisti">Vai alla gallery</a>
+                    </Button>
+                </FadeInAnimation>
             </div>
             <img
                 src="/assets/tattoo2.svg"

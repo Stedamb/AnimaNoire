@@ -1,8 +1,8 @@
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
-import { Button } from './ui/button';
-import FadeInAnimation from './ui/animations/FadeInAnimation';
+import { Button } from '../ui/button';
+import FadeInAnimation from '../ui/animations/FadeInAnimation';
 
 import 'swiper/css';
 

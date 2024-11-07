@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
-import { Button } from './ui/button';
-import { Card, CardContent, CardFooter } from './ui/card';
+import { Button } from '../ui/button';
+import { Card, CardContent, CardFooter } from '../ui/card';
 
 import 'swiper/css';
 
 import { merchItems } from '@/data/merch';
-import FadeInAnimation from './ui/animations/FadeInAnimation';
+import FadeInAnimation from '../ui/animations/FadeInAnimation';
 
 const Merch = () => {
     const merchRef = useRef<HTMLDivElement>(null);

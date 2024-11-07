@@ -12,11 +12,11 @@ const Navbar = () => {
             url: "#",
         },
         {
-            title: "Inbox",
-            url: "#",
+            title: "Artisti",
+            url: "/artists",
         },
         {
-            title: "Calendar",
+            title: "Shop",
             url: "#",
         }
     ]

@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { Button } from './ui/button';
-import FadeInAnimation from './ui/animations/FadeInAnimation';
+import { Button } from '../ui/button';
+import FadeInAnimation from '../ui/animations/FadeInAnimation';
 
 const Introduction = () => {
   const introductionRef = useRef<HTMLDivElement>(null);

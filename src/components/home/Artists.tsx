@@ -1,10 +1,10 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { A11y } from 'swiper/modules';
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 import 'swiper/css';
 
-import FadeInAnimation from './ui/animations/FadeInAnimation';
+import FadeInAnimation from '../ui/animations/FadeInAnimation';
 import { useRef } from 'react';
 
 const Artists = () => {

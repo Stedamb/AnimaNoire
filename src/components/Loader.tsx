@@ -1,22 +1,28 @@
-import React, { useEffect } from 'react';
+import Cookies from 'js-cookie';
+import { useEffect } from 'react';
 
 const Loader = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-    document.body.classList.add('overflow-hidden');
+    const hasSeenLoader = Cookies.get('hasSeenLoader');
 
-      const timer = setTimeout(() => {
-        document.body.classList.remove('overflow-hidden');
-      }, 2500);
-      
-      const timer2 = setTimeout(() => {
-        document.querySelector(".Loader")?.classList.add("hidden");
-    }, 4000);
+    if (!hasSeenLoader) {
+      window.scrollTo(0, 0);
+      document.body.classList.add('overflow-hidden');
+      Cookies.set('hasSeenLoader', 'true');
 
-    return () => {
-      clearTimeout(timer);
-      clearTimeout(timer2);
-    };
+      const windowScrolltimer = setTimeout(() => {
+          document.body.classList.remove('overflow-hidden');
+        }, 2500);
+        
+        const hideLoaderTimer = setTimeout(() => {
+            document.querySelector(".Loader")?.classList.add("hidden");
+      }, 3000);
+
+      return () => {
+        clearTimeout(windowScrolltimer);
+        clearTimeout(hideLoaderTimer);
+      };
+    }
   }, []);
 
   return (

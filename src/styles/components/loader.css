@@ -12,7 +12,7 @@
     animation: fadeOut 2s forwards 2s;
     
     .Logo {
-        animation: fadeIn 2s forwards .5s;
+        animation: fadeIn 3s forwards .5s;
     }
 }
 
@@ -31,10 +31,14 @@
         opacity: 0;
         visibility: hidden;
     }
-    100% {
+    99% {
         opacity: 1;
         visibility: visible;
 
+    }
+    100% {
+        opacity: 0;
+        visibility: hidden;
     }
 }
 

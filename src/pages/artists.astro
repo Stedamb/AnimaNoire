@@ -6,13 +6,15 @@ import Introduction from '@/components/home/Introduction';
 import Merch from '@/components/home/Merch';
 import Reviews from '@/components/Reviews';
 import Video from '@/components/Video';
+import Header from '@/components/Header';
+import List from '@/components/artists/List';
 ---
 
 <Layout title="AnimaNoire Tattoo Studio">
-	<Loader client:only></Loader>
+	<!-- <Loader client:only></Loader> -->
 		<main>
-			<Video client:visible></Video>
-			<Introduction client:visible></Introduction>
+			<Header client:visible></Header>
+			<List client:visible></List>
 			<Merch client:visible></Merch>
 			<Gallery client:visible></Gallery>
 			<Reviews client:visible></Reviews>

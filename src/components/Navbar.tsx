@@ -9,7 +9,7 @@ const Navbar = () => {
     const items = [
         {
             title: "Home",
-            url: "#",
+            url: "./",
         },
         {
             title: "Artisti",

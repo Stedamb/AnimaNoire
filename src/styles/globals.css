@@ -14,6 +14,7 @@
   :root {
     --text: #f8f8f8;
     --background: #121212;
+    --background-alt: #303030;
     --primary: #eee214;
     --primary-hover: #fff200;
     --secondary: #ededed;

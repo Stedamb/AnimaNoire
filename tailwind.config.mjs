@@ -12,6 +12,7 @@ export default {
     		colors: {
     			text: 'var(--text)',
     			background: 'var(--background)',
+    			'background-alt': 'var(--background-alt)',
     			primary: 'var(--primary)',
     			'primary-hover': 'var(--primary-hover)',
     			secondary: 'var(--secondary)',

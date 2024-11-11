@@ -7,7 +7,7 @@ const List = () => {
     const artistsRef = useRef<HTMLDivElement>(null);
 
     return (
-        <div ref={artistsRef} className="bg-background-alt relative py-16">
+        <div ref={artistsRef} className="bg-background-alt relative py-32">
             <div className="container-xl grid grid-cols-2 lg:grid-cols-3 ">
                 {artistItems.map((artist, index) => (
                     <FadeInAnimation triggerRef={artistsRef} delay={index * 0.2}>
@@ -16,9 +16,11 @@ const List = () => {
                                 <img className="w-full h-auto shaded" src={artist.photoSrc} alt={artist.name} />
                                 <div className="absolute inset-4 bg-gradient-to-b from-transparent to-gray-900 opacity-50 shadow-lg"></div>
                             </CardContent>
-                            <CardTitle className="absolute bottom-0  text-white text-center">
+                            <CardTitle className="absolute bottom-0 px-2 py-6 text-white text-center">
                                 {artist.name} {artist.surname}
                             </CardTitle>
+                            <a href={`/artists/${artist.slug}`} className="absolute inset-4">
+                        </a>
                         </Card>
                     </FadeInAnimation>
                 ))}

@@ -1,0 +1,37 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Detail from "@/components/artists/Detail";
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { artistItems } from "@/data/artists";
+
+const images = import.meta.glob<{ default: ImageMetadata }>('/src/assets/*.{jpeg,jpg,png,gif}');
+
+export async function getStaticPaths() {
+  const artists = artistItems;
+
+  return artists.map((artist: Artist) => ({
+    params: { artist: artist.slug },
+    props: { artist },
+  }));
+}
+const { artist } = Astro.props;
+
+// const imageKey = Object.keys(images).find((key) => key.includes(artist.slug));
+
+// let image = null;
+// if (imageKey) {
+//   const imageModule = await images[imageKey]();
+//   image = imageModule.default;
+// }
+---
+
+<Layout title={artist.name}>
+  <main>
+    <Detail artist={artist}>
+      <!-- {image && (
+        <Image src={artist.photoSrc} alt={artist.name} class="h-full object-cover" />
+      )} -->
+    </Detail>
+  </main>
+</Layout>

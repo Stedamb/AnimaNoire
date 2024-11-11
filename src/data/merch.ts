@@ -1,10 +1,3 @@
-export interface Merch {
-  title: string;
-  description: string;
-  photoSrc: string;
-  price: number;
-}
-
 export const merchItems: Merch[] = [
   {
     title: "Longboard Deck",

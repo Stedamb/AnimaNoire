@@ -54,7 +54,7 @@ const Gallery = () => {
                 alt="Logo"
                 width="640"
                 height="640"
-                className="absolute top-1/2 w-[50%] left-1/2 -translate-x-1/2 RevealAnimation"
+                className="absolute top-1/2 w-[50%] left-1/2 -translate-x-1/2 -z-10"
             />
         </div>
     );

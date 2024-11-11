@@ -18,15 +18,23 @@ interface AnimationOptions {
     stagger?: number;
 }
 
-interface Post {
-    id: string;
-    slug: string;
-    title: string;
-    date: string;
-    content: string;
-}
+interface Artist {
+    name: string;
+    surname: string;
+    role: number;
+    photoSrc: string;
+    slug?: string;
+  }
 
-interface PostPageProps {
-    post: Post;
+interface ArtistPageProps {
+    artist: Artist;
     children?: ReactNode;
 }
+
+interface Merch {
+    title: string;
+    description: string;
+    photoSrc: string;
+    price: number;
+  }
+  

@@ -3,23 +3,12 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { MenuIcon, Phone } from "lucide-react";
 import { Sheet, SheetTrigger, SheetContent } from "./ui/sheet";
 import { useState } from "react";
+import menuItems from "@/data/menu";
+
 
 const Navbar = () => {
+    const items = menuItems;
 
-    const items = [
-        {
-            title: "Home",
-            url: "./",
-        },
-        {
-            title: "Artisti",
-            url: "/artists",
-        },
-        {
-            title: "Shop",
-            url: "#",
-        }
-    ]
     const isMobile = useIsMobile();
     const [open, setOpen] = useState(false);
 

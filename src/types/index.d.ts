@@ -1,4 +1,9 @@
-declare type Video = {
+interface menuItem {
+    title: string,
+    url: string,
+}
+
+interface Video {
     source: string;
     title: string;
     description: string;

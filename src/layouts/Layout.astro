@@ -10,14 +10,10 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
-const cookies = Astro.request.headers.get("cookie") || "";
-const darkMode = cookies.includes("darkMode=true");
-const htmlClass = darkMode ? "dark" : "";
 ---
 
 <!doctype html>
-<html lang="en" class={htmlClass}>
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Astro description" />

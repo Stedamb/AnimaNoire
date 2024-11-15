@@ -1,4 +1,4 @@
-# Astro Template
+# AnimaNoire Tattoo Studio
 ### Stack:
 - Astro 
 - React

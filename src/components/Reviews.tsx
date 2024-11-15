@@ -8,7 +8,7 @@ import 'swiper/css/scrollbar';
 
 
 const Reviews = () => {
-    const featurableWidgetId = "";
+    const featurableWidgetId = "3669524a-ad1f-43aa-b568-5819d4a2a1d3";
 
     return (
         <div className="relative mt-64">

@@ -26,9 +26,8 @@ interface AnimationOptions {
 interface Artist {
     name: string;
     surname: string;
-    role: number;
-    photoSrc: string;
-    slug?: string;
+    role: string;
+    slug: string;
   }
 
 interface ArtistPageProps {

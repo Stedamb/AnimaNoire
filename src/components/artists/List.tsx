@@ -15,7 +15,7 @@ const List = () => {
                         <Card className="m-4">
                             <CardContent>
                                 <AspectRatio ratio={4 / 3}>
-                                    <img className="size-full object-cover shaded" src={artist.photoSrc} alt={artist.name} />
+                                    <img className="size-full object-cover shaded" src={"/artists/" + artist.slug + "/profilo.jpg"} alt={artist.name} />
                                     <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 shadow-lg"></div>
                                 </AspectRatio>
                             </CardContent>

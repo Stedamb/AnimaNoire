@@ -7,14 +7,20 @@
     "strict": true,
     "importsNotUsedAsValues": "remove",
     "forceConsistentCasingInFileNames": true,
-    "noEmit": false,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve"
+    "jsx": "preserve",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ]
+    }
   },
-  "includes": ["**/*.ts", "**/*.tsx"],
+  "includes": ["**/*.astro/types.d.ts","**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", ".vercel"]
 }

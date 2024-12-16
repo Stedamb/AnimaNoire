@@ -1,0 +1,50 @@
+---
+import { Button } from "@/components/ui/button";
+import { MobileDrawer } from "@/components/react/MobileDrawer";
+import { Phone } from "lucide-astro";
+
+export interface Route {
+  path: string;
+  label: string;
+  icon?: string;
+}
+
+export const routes: Route[] = [
+  {
+    path: "/",
+    label: "Home",
+  },
+  {
+    path: "/artists",
+    label: "Artisti",
+  },
+  {
+    path: "https://animanoireshop.com/",
+    label: "Shop",
+  },
+];
+---
+
+<div class="absolute top-0 left-0 w-full z-10">
+  {/* Mobile Menu */}
+  <MobileDrawer client:only />
+  <a class="md:hidden absolute top-6 right-6" href="/">
+    <Phone size={32} />
+    </a>
+
+  {/* Desktop Menu */}
+  <div class="hidden md:flex p-6 gap-4">
+    {
+      routes.map((route) => (
+        <Button variant="link" size="sm">
+          <a class="text-2xl text-white" href={route.path}>
+            {route.label}
+          </a>
+        </Button>
+      ))
+    }
+    <Button variant="link" size="sm" className="ml-auto">
+      <a class="text-2xl text-white" href="/">Prenota</a>
+    </Button>
+  </div>
+</div>

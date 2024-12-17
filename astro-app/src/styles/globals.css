@@ -1,6 +1,16 @@
+@import url(./components/cursor.css);
+@import url(./components/loader.css);
+
+@import url(./index.css);
+@import url(./container.css);
+@import url(./multimedia.css);
+@import url(./section.css);
+@import url(./typography.css);
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 3.9%;

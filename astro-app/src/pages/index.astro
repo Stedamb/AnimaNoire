@@ -11,7 +11,16 @@ const posts = await getPosts();
 
 <Layout title="Welcome to Astro.">
   <Video />
-  <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
+
+  <section class="py-20 max-w-4xl mx-auto flex flex-col items-center text-center">
+    <h2 class="font-title text-5xl">AnimaNoire Tattoo Atelier</h2>
+    <p class="text-xl my-4">
+      Welcome to the official website of AnimaNoire Tattoo Atelier, where we specialize in traditional Japanese tattooing techniques. We offer a unique and immersive experience for our clients, where they can experience the beauty and artistry of traditional Japanese tattooing.
+    </p>
   </section>
+
+
+  <!-- <section>
+    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
+  </section> -->
 </Layout>

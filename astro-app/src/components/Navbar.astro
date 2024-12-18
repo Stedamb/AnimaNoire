@@ -2,27 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { MobileDrawer } from "@/components/react/MobileDrawer";
 import { Phone } from "lucide-astro";
-
-export interface Route {
-  path: string;
-  label: string;
-  icon?: string;
-}
-
-export const routes: Route[] = [
-  {
-    path: "/",
-    label: "Home",
-  },
-  {
-    path: "/artists",
-    label: "Artisti",
-  },
-  {
-    path: "https://animanoireshop.com/",
-    label: "Shop",
-  },
-];
+import { routes } from "@/routes/routes";
 ---
 
 <div class="absolute top-0 left-0 w-full z-10">

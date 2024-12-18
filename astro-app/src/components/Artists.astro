@@ -1,0 +1,20 @@
+---
+import { getPosts } from "@/utils/sanity";
+import ArtistsCarousel from "./react/ArtistsCarousel";
+
+const posts = await getPosts();
+---
+
+<section class="max-w-[1600px] mx-auto relative grid grid-cols-1 lg:grid-cols-3 pb-16">
+    <div class="flex flex-col p-8">
+        <h2 class="font-title text-5xl">I nostri artisti</h2>
+        <p class="text-xl my-4">
+            Siamo un team di artisti talentosi e creativi specializzati nella tradizione
+            del tattoo. Offriamo un'esperienza unica e immersiva per i nostri clienti, dove
+            possono esprimere la loro creatività e la loro passione per il tattoo.
+        </p>
+    </div>
+    <div class="flex lg:col-span-2">
+        <ArtistsCarousel posts={posts} client:load />
+    </div>
+</section>

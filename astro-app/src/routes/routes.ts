@@ -1,8 +1,4 @@
-export interface Route {
-  path: string;
-  label: string;
-  icon?: string;
-}
+import type { Route } from "@/env";
 
 export const routes: Route[] = [
   {

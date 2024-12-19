@@ -16,7 +16,7 @@ export function MobileDrawer() {
     <Drawer>
       <DrawerTrigger className="md:hidden" asChild>
         <button
-          className="p-6 rounded-full text-white flex items-center justify-center"
+          className="flex items-center justify-center rounded-full p-6 text-white"
           aria-label="Toggle menu"
         >
           <Menu size={40} />
@@ -27,19 +27,19 @@ export function MobileDrawer() {
         <DrawerDescription>Choose an option below.</DrawerDescription>
       </DrawerHeader>
       <DrawerContent>
-          <ul className="flex flex-col items-center w-full gap-6 px-6 py-12">
-            {routes.map(({ path, label }) => (
-              <li key={path}>
+        <ul className="flex w-full flex-col items-center gap-24 px-6 pb-32 pt-20">
+          {routes.map(({ path, label }) => (
+            <li key={path}>
               <DrawerClose asChild>
                 <Button variant="link" size="sm">
-                  <a className="text-2xl" href={path}>
+                  <a className="font-title text-4xl" href={path}>
                     {label}
                   </a>
                 </Button>
               </DrawerClose>
             </li>
-            ))}
-          </ul>
+          ))}
+        </ul>
       </DrawerContent>
     </Drawer>
   );

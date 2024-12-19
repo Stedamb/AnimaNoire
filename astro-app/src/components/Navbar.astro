@@ -1,19 +1,19 @@
 ---
-import { Button } from "@/components/ui/button";
-import { MobileDrawer } from "@/components/react/MobileDrawer";
-import { Phone } from "lucide-astro";
-import { routes } from "@/routes/routes";
+import { Button } from '@/components/ui/button';
+import { MobileDrawer } from '@/components/react/MobileDrawer';
+import { Phone } from 'lucide-astro';
+import { routes } from '@/routes/routes';
 ---
 
-<div class="absolute top-0 left-0 w-full z-10">
+<div class="absolute left-0 top-0 z-10 w-full">
   {/* Mobile Menu */}
   <MobileDrawer client:only />
-  <a class="md:hidden absolute top-6 right-6" href="/">
+  <a class="absolute right-6 top-6 md:hidden" href="/">
     <Phone size={32} />
-    </a>
+  </a>
 
   {/* Desktop Menu */}
-  <div class="hidden md:flex p-6 gap-4">
+  <div class="hidden gap-4 p-6 md:flex">
     {
       routes.map((route) => (
         <Button variant="link" size="sm">

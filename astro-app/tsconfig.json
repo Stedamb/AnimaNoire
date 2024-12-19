@@ -16,11 +16,9 @@
     "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/*": ["./src/*"]
     }
   },
-  "includes": ["**/*.astro/types.d.ts","**/*.ts", "**/*.tsx"],
+  "includes": ["**/*.astro/types.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", ".vercel"]
 }

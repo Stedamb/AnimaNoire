@@ -3,7 +3,7 @@
 /// <reference types="@sanity/astro/module" />
 
 export interface Route {
-    path: string;
-    label: string;
-    icon?: string;
-  }
+  path: string;
+  label: string;
+  icon?: string;
+}

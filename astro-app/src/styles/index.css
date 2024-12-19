@@ -1,31 +1,33 @@
 :root {
-    font-synthesis: none;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    -webkit-text-size-adjust: 100%;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
-    margin: 0;
-    min-width: 320px;
-    min-height: 100vh;
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
 
-    /* display: flex;
+  /* display: flex;
     flex-direction: column;
     justify-content: space-between; */
 
-    background-color: var(--background);
-    color: var(--text);
-    /* transition: background-color 0.3s ease, color 0.3s ease; */
+  background-color: var(--background);
+  color: var(--text);
+  /* transition: background-color 0.3s ease, color 0.3s ease; */
 }
 
 .hide {
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.3s ease-in-out,
+    visibility 0s linear 0.3s;
 }

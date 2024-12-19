@@ -1,0 +1,20 @@
+---
+import { getPosts } from '@/utils/sanity';
+import MerchCarousel from '@/components/react/MerchCarousel';
+import { Button } from '@/components/ui/button';
+
+const posts = await getPosts();
+---
+
+<section class="py-20 px-4">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="font-title text-4xl mb-8 text-center">Shop Our Merchandise</h2>
+    <p class="text-xl text-center mb-8 max-w-2xl mx-auto">
+      Take a piece of AnimaNoire home with you. From apparel to art prints, each item is crafted with the same attention to detail as our tattoos.
+    </p>
+    <Button className="flex mx-auto mb-12">
+      <a href="/merch">Shop</a>
+    </Button>
+    <MerchCarousel client:load />
+  </div>
+</section>

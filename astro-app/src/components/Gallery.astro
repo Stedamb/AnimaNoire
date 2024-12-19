@@ -1,0 +1,19 @@
+---
+import GallerySlider from '@/components/react/GallerySlider';
+import { Button } from '@/components/ui/button';
+---
+
+<section class="relative w-full overflow-hidden py-20">
+  <div class="max-w-7xl mx-auto px-4">
+    <h2 class="font-title text-4xl mb-8 text-center">Our Latest Work</h2>
+    <p class="text-xl text-center mb-8 max-w-2xl mx-auto">
+      Explore our portfolio of custom tattoos, each piece telling its own unique story through the art of Japanese tattooing.
+    </p>
+    <Button className="flex mx-auto mb-12">
+      <a href="/gallery">View Gallery</a>
+    </Button>
+  </div>
+  <div class="relative">
+    <GallerySlider client:load />
+  </div>
+</section>

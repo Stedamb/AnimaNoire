@@ -1,6 +1,7 @@
 ---
 import { getPosts } from '@/utils/sanity';
-import ArtistsCarousel from './react/ArtistsCarousel';
+import ArtistsCarousel from '@/components/react/ArtistsCarousel';
+import { Button } from '@/components/ui/button';
 
 const posts = await getPosts();
 ---
@@ -13,6 +14,9 @@ const posts = await getPosts();
       Offriamo un'esperienza unica e immersiva per i nostri clienti, dove possono esprimere la loro
       creatività e la loro passione per il tattoo.
     </p>
+    <Button className="flex mx-auto lg:mr-auto lg:ml-0 mb-12">
+      <a href="/gallery">Tutti gli artisti</a>
+    </Button>
   </div>
   <div class="flex lg:col-span-2">
     <ArtistsCarousel posts={posts} client:load />

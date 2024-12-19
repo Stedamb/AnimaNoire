@@ -6,12 +6,15 @@ import Video from '@/components/Video.astro';
 import { Button } from '@/components/ui/button';
 import Artists from '@/components/Artists.astro';
 import Loader from '@/components/Loader.astro';
+import Merch from '@/components/Merch.astro';
+import Gallery from '@/components/Gallery.astro';
+import Reviews from '@/components/Reviews.astro';
 
 const posts = await getPosts();
 ---
 
 <Layout title="Welcome to Astro.">
-  <Loader />
+  <!-- <Loader /> -->
   <Video />
 
   <section
@@ -25,12 +28,15 @@ const posts = await getPosts();
     </p>
     <div class="mt-2 flex gap-4">
       <Button>
-        <a class="rounded-md text-xl" href="/prenota">Prenota</a>
+        <a href="/prenota">Prenota</a>
       </Button>
     </div>
   </section>
 
   <Artists />
+  <Merch />
+  <Gallery />
+  <Reviews />
 
   <!-- <section>
     {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}

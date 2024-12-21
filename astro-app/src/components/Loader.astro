@@ -6,7 +6,7 @@
     alt="Logo"
     width="640"
     height="640"
-    class="mx-8 opacity-0 mix-blend-lighten transition-opacity duration-500"
+    class="px-8 opacity-0 mix-blend-lighten transition-opacity duration-500"
   />
 </div>
 
@@ -21,7 +21,7 @@
 
   window.addEventListener('load', () => {
     const elapsedTime = Date.now() - startTime;
-    const remainingTime = Math.max(2000 - elapsedTime, 0);
+    const remainingTime = Math.max(1500 - elapsedTime, 0);
 
     setTimeout(() => {
       if (img) img.classList.replace('opacity-100', 'opacity-0');

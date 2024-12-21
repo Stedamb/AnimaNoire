@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import '@/styles/globals.css';
-import { getPosts } from '../utils/sanity';
 import Video from '@/components/Video.astro';
 import { Button } from '@/components/ui/button';
 import Artists from '@/components/Artists.astro';
@@ -9,8 +8,6 @@ import Loader from '@/components/Loader.astro';
 import Merch from '@/components/Merch.astro';
 import Gallery from '@/components/Gallery.astro';
 import Reviews from '@/components/Reviews.astro';
-
-const posts = await getPosts();
 ---
 
 <Layout title="Welcome to Astro.">

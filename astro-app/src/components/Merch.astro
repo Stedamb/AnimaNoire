@@ -3,15 +3,23 @@ import MerchCarousel from '@/components/react/MerchCarousel';
 import { Button } from '@/components/ui/button';
 ---
 
-<section class="py-20 px-4">
+<section id="merch" class="py-20 px-4">
   <div class="max-w-6xl mx-auto">
-    <h2 class="font-title text-4xl mb-8 text-center">Shop Our Merchandise</h2>
-    <p class="text-xl text-center mb-8 max-w-2xl mx-auto">
+    <h2 class="font-title text-4xl mb-8 text-center opacity-0" data-animation="fadeInUp" data-delay="0.2">Shop Our Merchandise</h2>
+    <p class="text-xl text-center mb-8 max-w-2xl mx-auto opacity-0" data-animation="fadeIn" data-delay="0.4">
       Take a piece of AnimaNoire home with you. From apparel to art prints, each item is crafted with the same attention to detail as our tattoos.
     </p>
-    <Button className="flex mx-auto mb-12">
+    <Button className="flex mx-auto mb-12 opacity-0" data-animation="fadeInScale" data-delay="0.6">
       <a href="/merch">Shop</a>
     </Button>
-    <MerchCarousel client:load />
+    <div class="opacity-0" data-animation="fadeInUp" data-delay="0.8">
+      <MerchCarousel client:load />
+    </div>
   </div>
 </section>
+
+<script>
+  import { setupAnimations } from "@/utils/animations";
+
+  setupAnimations(document.getElementById("merch")! as HTMLElement);
+</script>

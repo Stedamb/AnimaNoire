@@ -11,19 +11,19 @@ import Reviews from '@/components/Reviews.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-  <!-- <Loader /> -->
+  <Loader />
   <Video />
 
   <section
     class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-36 text-center lg:pb-36"
   >
-    <h2 class="font-title text-balance text-5xl">AnimaNoire Tattoo Atelier</h2>
-    <p class="my-4 text-xl">
+    <h2 class="font-title text-balance text-5xl opacity-0" data-animation="fadeInUp" data-delay="0.2">AnimaNoire Tattoo Atelier</h2>
+    <p class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.4">
       Welcome to the official website of AnimaNoire Tattoo Atelier, where we specialize in
       traditional Japanese tattooing techniques. We offer a unique and immersive experience for our
       clients, where they can experience the beauty and artistry of traditional Japanese tattooing.
     </p>
-    <div class="mt-2 flex gap-4">
+    <div class="mt-2 flex gap-4 opacity-0" data-animation="fadeInScale" data-delay="0.6">
       <Button>
         <a href="/prenota">Prenota</a>
       </Button>
@@ -34,8 +34,10 @@ import Reviews from '@/components/Reviews.astro';
   <Merch />
   <Gallery />
   <Reviews />
-
-  <!-- <section>
-    {posts.length ? posts.map((post) => <Card post={post} />) : <Welcome />}
-  </section> -->
 </Layout>
+
+<script>
+  import { setupAnimations } from "@/utils/animations";
+
+  setupAnimations(document.querySelector("section")! as HTMLElement);
+</script>

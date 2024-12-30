@@ -1,9 +1,9 @@
 ---
-import { getPosts } from '@/utils/sanity';
+import { getAllArtists } from '@/utils/sanity';
 import ArtistsCarousel from '@/components/react/ArtistsCarousel';
 import { Button } from '@/components/ui/button';
 
-const posts = await getPosts();
+const artists = await getAllArtists();
 ---
 
 <section id="artists" class="relative mx-auto grid max-w-[1600px] grid-cols-1 py-4 lg:grid-cols-3 lg:py-20">
@@ -15,11 +15,11 @@ const posts = await getPosts();
       creatività e la loro passione per il tattoo.
     </p>
     <Button className="flex mx-auto lg:mr-auto lg:ml-0 mb-12 opacity-0" data-animation="fadeInScale" data-delay="0.6">
-      <a href="/gallery">Tutti gli artisti</a>
+      <a href="/artists">Tutti gli artisti</a>
     </Button>
   </div>
   <div class="flex lg:col-span-2 opacity-0" data-animation="fadeInLeft" data-delay="0.8">
-    <ArtistsCarousel posts={posts} client:load />
+    <ArtistsCarousel artists={artists} client:load />
   </div>
 </section>
 

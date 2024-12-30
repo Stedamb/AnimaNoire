@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { urlFor } from '@/utils/image';
+
+import { getAllArtists, type Artist } from '@/utils/sanity';
+
+const artists = (await getAllArtists()) as Artist[];
+---
+
+<Layout title="Welcome to Astro.">
+  <section
+    id="artists-header"
+    class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-40 text-center"
+  >
+    <h2
+      class="font-title text-balance text-5xl opacity-0"
+      data-animation="fadeInUp"
+      data-delay="0.2"
+    >
+      I nostri artisti
+    </h2>
+    <p class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.4">
+      Siamo un team di artisti talentosi e creativi specializzati nella tradizione del tattoo.
+      Offriamo un'esperienza unica e immersiva per i nostri clienti, dove possono esprimere la loro
+      creatività e la loro passione per il tattoo.
+    </p>
+  </section>
+
+  <section id="artists" class="relative bg-gradient-to-b from-background to-muted pb-20">
+    <div class="relative mx-auto grid max-w-[1200px] grid-cols-1 lg:grid-cols-3">
+      {
+        artists.map((artist, index) => (
+          <div data-animation="fadeInUp" data-delay={index * 0.2}>
+            <Card className="m-4 group relative">
+              <CardContent className="p-0">
+                <div class="relative w-full h-full overflow-hidden">
+                  <img
+                    class="h-content w-full object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
+                    src={
+                      artist.mainImage
+                        ? urlFor(artist.mainImage).width(500).height(300).url()
+                        : '/placeholder-image.jpg'
+                    }
+                    alt={artist.name}
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 shadow-lg" />
+                  <div class="absolute bottom-0 flex w-full flex-col p-4">
+                    <div class="font-semibold text-muted-foreground">
+                      {artist.techniques?.map((technique) => technique.name).join(', ') || ''}
+                    </div>
+                    <h3 class="font-semibold text-foreground">
+                      {artist.name} {artist.surname}
+                    </h3>
+                  </div>
+                </div>
+                <a href={`/artist/${artist.slug}`} class="absolute inset-4" />
+              </CardContent>
+            </Card>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { setupAnimations } from '@/utils/animations';
+
+  // Setup animations on initial load
+  setupAnimations(document.body);
+
+  // Re-run animations on client-side navigation
+  document.addEventListener('astro:page-load', () => {
+    setupAnimations(document.body);
+  });
+</script>

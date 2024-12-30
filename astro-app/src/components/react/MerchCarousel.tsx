@@ -60,14 +60,14 @@ export default function MerchCarousel() {
   return (
     <Carousel
       opts={{
-        align: 'start',
+        align: 'center',
         loop: true,
       }}
       className="w-full"
     >
       <CarouselContent>
         {merchItems.map((item) => (
-          <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+          <CarouselItem key={item.id} className="basis-2/3 md:basis-1/2 lg:basis-1/3">
             <Card className="h-full">
               <CardHeader className="p-0">
                 <img

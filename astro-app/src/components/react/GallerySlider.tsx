@@ -54,7 +54,7 @@ export default function GallerySlider() {
     >
       <CarouselContent>
         {galleryImages.map((image) => (
-          <CarouselItem key={image.id} className="basis-2/3">
+          <CarouselItem key={image.id} className="lg:basis-2/3">
             <div className="relative aspect-[16/9] w-full overflow-hidden">
               <img
                 src={image.src}

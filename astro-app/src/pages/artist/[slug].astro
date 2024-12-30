@@ -1,0 +1,111 @@
+---
+import type { InferGetStaticParamsType } from 'astro';
+import { PortableText } from 'astro-portabletext';
+import Layout from '../../layouts/Layout.astro';
+import { urlFor } from '../../utils/image';
+import { getArtistBySlug, getAllArtists } from '../../utils/sanity';
+
+export async function getStaticPaths() {
+  const artists = await getAllArtists();
+  return artists.map((artist) => ({
+    params: { slug: artist.slug },
+  }));
+}
+
+type Params = InferGetStaticParamsType<typeof getStaticPaths>;
+const { slug } = Astro.params as Params;
+
+const artist = await getArtistBySlug(slug);
+---
+
+<Layout title={`${artist.name} ${artist.surname} - Artist`}>
+  <div class="relative">
+    <section class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
+      {
+        artist.mainImage ? (
+          <>
+            <img
+              class="h-full w-full object-cover"
+              src={urlFor(artist.mainImage).width(1920).height(1080).url()}
+              alt={`${artist.name} ${artist.surname}`}
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+          </>
+        ) : (
+          <div class="h-full w-full bg-muted" />
+        )
+      }
+      <div class="absolute bottom-0 left-0 right-0 p-8">
+        <div class="mx-auto max-w-[1200px]">
+          <div class="text-4xl font-bold md:text-5xl lg:text-6xl">
+            {artist.name}
+            {artist.surname}
+          </div>
+          {
+            artist.techniques && (
+              <div class="mt-4 flex flex-wrap gap-2">
+                {artist.techniques.map((technique) => (
+                  <span class="text-bold rounded-full bg-primary/10 px-4 py-2 text-sm text-foreground">
+                    {technique.name}
+                  </span>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="mx-auto max-w-[1200px] px-8 py-12">
+      <div class="prose dark:prose-invert text-xl">
+        {artist.body && <PortableText value={artist.body} />}
+      </div>
+    </section>
+
+    <!-- Artworks Section -->
+    {
+      artist.artworks && artist.artworks.length > 0 && (
+        <section class="mx-auto max-w-[1200px] px-8 py-12">
+          <h2 class="mb-8 text-3xl font-bold">Artworks</h2>
+          <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 [&>div]:mb-4">
+            {artist.artworks.map((artwork) => (
+              <div class="group relative h-fit cursor-zoom-in break-inside-avoid overflow-hidden bg-muted">
+                {artwork.image && (
+                  <img
+                    src={urlFor(artwork.image).url()}
+                    alt={artwork.title}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {artwork.technique && (
+                    <p class="text-sm text-white/80">{artwork.technique.name}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+            {artist.artworks.map((artwork) => (
+              <div class="group relative h-fit cursor-zoom-in break-inside-avoid overflow-hidden bg-muted">
+                {artwork.image && (
+                  <img
+                    src={urlFor(artwork.image).url()}
+                    alt={artwork.title}
+                    class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                  />
+                )}
+                <div class="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                <div class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  {artwork.technique && (
+                    <p class="text-sm text-white/80">{artwork.technique.name}</p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</Layout>

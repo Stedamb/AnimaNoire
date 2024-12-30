@@ -27,7 +27,7 @@ export function MobileDrawer() {
         <DrawerDescription>Choose an option below.</DrawerDescription>
       </DrawerHeader>
       <DrawerContent>
-        <ul className="flex w-full flex-col items-center gap-24 px-6 pb-32 pt-20">
+        <ul className="flex w-full flex-col items-center gap-16 px-6 pb-32 pt-20">
           {routes.map(({ path, label }) => (
             <li key={path}>
               <DrawerClose asChild>

@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import '@/styles/globals.css';
 import Video from '@/components/Video.astro';
 import { Button } from '@/components/ui/button';
 import Artists from '@/components/Artists.astro';
@@ -11,10 +10,10 @@ import Reviews from '@/components/Reviews.astro';
 ---
 
 <Layout title="Welcome to Astro.">
-  <Loader />
+  <!-- <Loader /> -->
   <Video />
 
-  <section
+  <section id="introduction"
     class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-36 text-center lg:pb-36"
   >
     <h2 class="font-title text-balance text-5xl opacity-0" data-animation="fadeInUp" data-delay="0.2">AnimaNoire Tattoo Atelier</h2>
@@ -39,5 +38,11 @@ import Reviews from '@/components/Reviews.astro';
 <script>
   import { setupAnimations } from "@/utils/animations";
 
-  setupAnimations(document.querySelector("section")! as HTMLElement);
+  // Setup animations on initial load
+  setupAnimations(document.body);
+
+  // Re-run animations on client-side navigation
+  document.addEventListener('astro:page-load', () => {
+    setupAnimations(document.body);
+  });
 </script>

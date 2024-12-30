@@ -3,6 +3,10 @@ import { Button } from '@/components/ui/button';
 import { MobileDrawer } from '@/components/react/MobileDrawer';
 import { Phone } from 'lucide-astro';
 import { routes } from '@/routes/routes';
+
+// Get current path to determine if we're on home page
+const currentPath = Astro.url.pathname;
+const isHomePage = currentPath === '/';
 ---
 
 <div class="absolute left-0 top-0 z-10 w-full">
@@ -11,6 +15,14 @@ import { routes } from '@/routes/routes';
   <a class="absolute right-6 top-6 md:hidden" href="/">
     <Phone size={32} />
   </a>
+
+  {
+    !isHomePage && (
+      <a href="/" class="absolute left-1/2 top-6 -translate-x-1/2 transform">
+        <img src="/logo.png" alt="Logo" class="h-24 mix-blend-lighten" />
+      </a>
+    )
+  }
 
   {/* Desktop Menu */}
   <div class="hidden gap-4 p-6 md:flex">

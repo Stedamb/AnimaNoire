@@ -11,27 +11,38 @@
 </div>
 
 <script>
-  const startTime = Date.now();
+  const hasSeenLoader = localStorage.getItem('isSeen') === 'true';
   const loader = document.querySelector('div.fixed.inset-0');
-  const img = loader?.querySelector('img');
-  window.scrollTo({ top: 0 });
+  
+  if (hasSeenLoader && loader) {
+    loader.remove();
+  } else {
+    const startTime = Date.now();
+    const img = loader?.querySelector('img');
+    window.scrollTo({ top: 0 });
 
-  document.body.style.overflow = 'hidden';
+    document.body.style.overflow = 'hidden';
 
-  if (img) img.classList.replace('opacity-0', 'opacity-100');
+    if (img) img.classList.replace('opacity-0', 'opacity-100');
 
-  window.addEventListener('load', () => {
-    const elapsedTime = Date.now() - startTime;
-    const remainingTime = Math.max(1500 - elapsedTime, 0);
+    const cleanup = () => {
+      if (loader) {
+        loader.classList.add('opacity-0');
+        setTimeout(() => {
+          loader.remove();
+          document.body.style.overflow = '';
+          localStorage.setItem('isSeen', 'true');
+        }, 500);
+      }
+    };
 
-    setTimeout(() => {
-      if (img) img.classList.replace('opacity-100', 'opacity-0');
-      if (loader) loader.classList.add('opacity-0');
+    window.addEventListener('load', () => {
+      const elapsedTime = Date.now() - startTime;
+      const remainingTime = Math.max(1500 - elapsedTime, 0);
+      setTimeout(cleanup, remainingTime);
+    });
 
-      setTimeout(() => {
-        if (loader) loader.classList.add('hidden');
-        document.body.style.overflow = '';
-      }, 500);
-    }, remainingTime);
-  });
+    // Cleanup on page leave
+    document.addEventListener('astro:before-preparation', cleanup, { once: true });
+  }
 </script>

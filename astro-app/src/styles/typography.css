@@ -20,34 +20,6 @@ html {
   }
 }
 
-h1 {
-  font-size: 4.21rem !important;
-}
-
-h2 {
-  font-size: 3.158rem !important;
-}
-
-h3 {
-  font-size: 2.369rem !important;
-}
-
-h4 {
-  font-size: 1.777rem !important;
-}
-
-h5 {
-  font-size: 1.55rem !important;
-}
-
-h6 {
-  font-size: 1.333rem !important;
-}
-
-small {
-  font-size: 0.75rem !important;
-}
-
 a {
   text-decoration: inherit;
 }

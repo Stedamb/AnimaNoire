@@ -20,7 +20,7 @@ export default function ArtistsCarousel({ artists }: ArtistsCarouselProps) {
           <CarouselItem key={`${artist.name}-${artist.surname}`} className="-ml-8 basis-full md:basis-1/2 xl:basis-1/3">
             <a
               className="block aspect-square min-h-[300px] rounded-full"
-              href={`/artist/${artist.slug}`}
+              href={`/artista/${artist.slug}`}
             >
               {artist.mainImage && (
                 <img

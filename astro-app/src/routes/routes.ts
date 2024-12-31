@@ -6,12 +6,16 @@ export const routes: Route[] = [
     label: 'Home',
   },
   {
-    path: '/artists',
+    path: '/artisti',
     label: 'Artisti',
   },
   {
     path: 'https://animanoireshop.com/',
     label: 'Shop',
+  },
+  {
+    path: '/gallery',
+    label: 'Gallery',
   },
   {
     path: '/contatti',

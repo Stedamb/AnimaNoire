@@ -1,6 +1,37 @@
 ---
 import MerchCarousel from '@/components/react/MerchCarousel';
 import { Button } from '@/components/ui/button';
+import { getAllMerch } from '@/utils/sanity';
+import { urlFor } from '@/utils/image';
+
+const merchData = await getAllMerch();
+
+const merchItems = merchData.flatMap(item => [
+  {
+    id: `${item._id}-1`,
+    title: item.name,
+    description: item.description || '',
+    price: item.price,
+    image: urlFor(item.image).url(),
+    link: item.link
+  },
+  {
+    id: `${item._id}-2`,
+    title: item.name,
+    description: item.description || '',
+    price: item.price,
+    image: urlFor(item.image).url(),
+    link: item.link
+  },
+  {
+    id: `${item._id}-3`,
+    title: item.name,
+    description: item.description || '',
+    price: item.price,
+    image: urlFor(item.image).url(),
+    link: item.link
+  }
+]);
 ---
 
 <section id="merch" class="py-20 px-4">
@@ -13,7 +44,7 @@ import { Button } from '@/components/ui/button';
       <a href="/merch">Shop</a>
     </Button>
     <div class="opacity-0" data-animation="fadeInUp" data-delay="0.8">
-      <MerchCarousel client:load />
+      <MerchCarousel client:load items={merchItems} />
     </div>
   </div>
 </section>

@@ -3,14 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import Video from '@/components/Video.astro';
 import { Button } from '@/components/ui/button';
 import Artists from '@/components/Artists.astro';
-import Loader from '@/components/Loader.astro';
 import Merch from '@/components/Merch.astro';
 import Gallery from '@/components/Gallery.astro';
 import Reviews from '@/components/Reviews.astro';
+import Loader from '@/components/Loader.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-  <!-- <Loader /> -->
+<Layout title="Home | AnimaNoire Tattoo Atelier">
+  <Loader />
   <Video />
 
   <section id="introduction"
@@ -18,9 +18,9 @@ import Reviews from '@/components/Reviews.astro';
   >
     <h2 class="font-title text-balance text-5xl opacity-0" data-animation="fadeInUp" data-delay="0.2">AnimaNoire Tattoo Atelier</h2>
     <p class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.4">
-      Welcome to the official website of AnimaNoire Tattoo Atelier, where we specialize in
-      traditional Japanese tattooing techniques. We offer a unique and immersive experience for our
-      clients, where they can experience the beauty and artistry of traditional Japanese tattooing.
+      Benvenuti nel sito ufficiale di AnimaNoire Tattoo Atelier. Il nostro studio unisce arte e passione 
+      per creare tatuaggi unici e personali. Offriamo un'esperienza immersiva dove ogni dettaglio è 
+      curato per trasformare le tue idee in arte sulla pelle.
     </p>
     <div class="mt-2 flex gap-4 opacity-0" data-animation="fadeInScale" data-delay="0.6">
       <Button>

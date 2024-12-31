@@ -10,6 +10,7 @@ import {
   allTechniquesQuery,
   techniqueBySlugQuery,
   searchQuery,
+  allMerchQuery,
 } from '../lib/queries';
 
 export interface Artist {
@@ -47,6 +48,17 @@ export interface Technique {
   artists?: Pick<Artist, '_id' | 'name' | 'surname' | 'slug' | 'mainImage'>[];
 }
 
+export interface Merch {
+  _id: string;
+  _type: 'merchandise';
+  name: string;
+  slug: string;
+  description?: string;
+  price: number;
+  link: string;
+  image: ImageAsset & { alt?: string };
+}
+
 export interface SearchResults {
   artists: Pick<Artist, '_id' | 'name' | 'surname' | 'slug' | 'mainImage'>[];
   artworks: (Pick<Artwork, '_id' | 'title' | 'slug' | 'image'> & { artist?: Pick<Artist, 'name' | 'surname'> })[];
@@ -78,6 +90,22 @@ export async function getAllTechniques(): Promise<Technique[]> {
 
 export async function getTechniqueBySlug(slug: string): Promise<Technique> {
   return await sanityClient.fetch(techniqueBySlugQuery, { slug });
+}
+
+// Merch queries
+export async function getAllMerch(): Promise<Merch[]> {
+  try {
+    const result = await sanityClient.fetch(allMerchQuery);
+    console.log('Sanity Response:', result);
+    if (!result || result.length === 0) {
+      console.log('No merch items found in Sanity');
+      return [];
+    }
+    return result;
+  } catch (error) {
+    console.error('Error fetching merch:', error);
+    return [];
+  }
 }
 
 // Search query

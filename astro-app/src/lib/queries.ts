@@ -138,6 +138,20 @@ export const techniqueBySlugQuery = `*[_type == "technique" && slug.current == $
   }
 }`
 
+// Get all merch items
+export const allMerchQuery = `*[_type == "merchandise"] {
+  _id,
+  name,
+  description,
+  price,
+  image {
+    asset->,
+    alt
+  },
+  link,
+  "slug": slug.current
+}`
+
 // Search across all content types
 export const searchQuery = `{
   "artists": *[_type == "artist" && (name match $searchTerm || surname match $searchTerm)] {

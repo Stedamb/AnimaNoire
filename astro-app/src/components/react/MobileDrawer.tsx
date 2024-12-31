@@ -10,10 +10,23 @@ import {
 } from '@/components/ui/drawer';
 import { routes } from '@/routes/routes';
 import { Button } from '@/components/ui/button';
+import { useEffect, useState } from 'react';
 
 export function MobileDrawer() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  // Close drawer when navigating
+  useEffect(() => {
+    const handleNavigation = () => {
+      setIsOpen(false);
+    };
+
+    document.addEventListener('astro:after-navigation', handleNavigation);
+    return () => document.removeEventListener('astro:after-navigation', handleNavigation);
+  }, []);
+
   return (
-    <Drawer>
+    <Drawer open={isOpen} onOpenChange={setIsOpen}>
       <DrawerTrigger className="md:hidden" asChild>
         <button
           className="flex items-center justify-center rounded-full p-6 text-white"

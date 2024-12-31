@@ -11,7 +11,7 @@ const isHomePage = currentPath === '/';
 
 <div class="absolute left-0 top-0 z-10 w-full">
   {/* Mobile Menu */}
-  <MobileDrawer client:only />
+  <MobileDrawer client:load />
   <a class="absolute right-6 top-6 md:hidden" href="/">
     <Phone size={32} />
   </a>

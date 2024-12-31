@@ -63,13 +63,9 @@ const animateElement = (element: HTMLElement) => {
 
 export const setupAnimations = (container: HTMLElement) => {
   const elements = container.querySelectorAll('[data-animation]');
-  console.log(elements);
   elements.forEach(el => {
     inView(el as HTMLElement, () => {
       animateElement(el as HTMLElement);
     });
   });
 };
-
-// Example usage in your components:
-// <div data-animation="fadeInLeft" data-delay="0.3">Content</div>

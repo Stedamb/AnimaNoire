@@ -10,35 +10,19 @@ import {
 import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
 
-const galleryImages = [
-  {
-    id: '1',
-    src: '/gallery.jpg',
-    alt: 'Tattoo artwork 1',
-  },
-  {
-    id: '2',
-    src: '/gallery.jpg',
-    alt: 'Tattoo artwork 2',
-  },
-  {
-    id: '3',
-    src: '/gallery.jpg',
-    alt: 'Tattoo artwork 3',
-  },
-  {
-    id: '4',
-    src: '/gallery.jpg',
-    alt: 'Tattoo artwork 4',
-  },
-  {
-    id: '5',
-    src: '/gallery.jpg',
-    alt: 'Tattoo artwork 5',
-  },
-];
+interface GalleryImage {
+  id: string;
+  src: string;
+  alt: string;
+  title: string;
+  artist?: string;
+}
 
-export default function GallerySlider() {
+interface GallerySliderProps {
+  images: GalleryImage[];
+}
+
+export default function GallerySlider({ images }: GallerySliderProps) {
   const plugin = useRef(
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
@@ -53,14 +37,20 @@ export default function GallerySlider() {
       }}
     >
       <CarouselContent>
-        {galleryImages.map((image) => (
+        {images.map((image) => (
           <CarouselItem key={image.id} className="lg:basis-2/3">
-            <div className="relative aspect-[16/9] w-full overflow-hidden">
+            <div className="relative aspect-[16/9] w-full overflow-hidden group">
               <img
                 src={image.src}
                 alt={image.alt}
-                className="h-full w-full object-cover transition-transform duration-500 hover:scale-105"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
+              <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
+                <h3 className="text-xl font-semibold text-white">{image.title}</h3>
+                {image.artist && (
+                  <p className="text-gray-300">{image.artist}</p>
+                )}
+              </div>
             </div>
           </CarouselItem>
         ))}

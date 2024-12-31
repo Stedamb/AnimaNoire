@@ -1,0 +1,44 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { urlFor } from '@/utils/image';
+import { GalleryGrid } from '@/components/react/GalleryGrid';
+import { getAllArtworks } from '@/utils/sanity';
+
+const artworks = await getAllArtworks();
+
+const galleryImages = artworks.map(artwork => ({
+  url: urlFor(artwork.image).url(),
+  title: artwork.title,
+  technique: artwork.technique?.name
+}));
+---
+
+<Layout title="Gallery | AnimaNoire Tattoo Atelier">
+  <section
+    id="gallery-header"
+    class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-40 text-center"
+  >
+    <h2
+      class="font-title text-balance text-5xl opacity-0"
+      data-animation="fadeInUp"
+    >
+      Gallery
+    </h2>
+  </section>
+
+  <section id="gallery" class="relative mx-4 bg-gradient-to-b from-background to-muted pb-20">
+    <GalleryGrid client:load images={galleryImages} />
+  </section>
+</Layout>
+
+<script>
+  import { setupAnimations } from '@/utils/animations';
+
+  // Setup animations on initial load
+  setupAnimations(document.body);
+
+  // Re-run animations on client-side navigation
+  document.addEventListener('astro:page-load', () => {
+    setupAnimations(document.body);
+  });
+</script>

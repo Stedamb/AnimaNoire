@@ -23,40 +23,14 @@ interface MerchItem {
   description: string;
   price: number;
   image: string;
+  link: string;
 }
 
-const merchItems: MerchItem[] = [
-  {
-    id: '1',
-    title: 'Classic Black Hoodie',
-    description: 'Premium cotton blend hoodie with AnimaNoire logo',
-    price: 59.99,
-    image: '/merch1.png',
-  },
-  {
-    id: '2',
-    title: 'Art Print Collection',
-    description: 'Set of 3 limited edition art prints',
-    price: 45.00,
-    image: '/merch1.png',
-  },
-  {
-    id: '3',
-    title: 'Studio T-Shirt',
-    description: 'Organic cotton t-shirt with custom artwork',
-    price: 29.99,
-    image: '/merch1.png',
-  },
-  {
-    id: '4',
-    title: 'Tattoo Aftercare Kit',
-    description: 'Complete kit for proper tattoo healing',
-    price: 34.99,
-    image: '/merch1.png',
-  },
-];
+interface MerchCarouselProps {
+  items: MerchItem[];
+}
 
-export default function MerchCarousel() {
+export default function MerchCarousel({ items }: MerchCarouselProps) {
   return (
     <Carousel
       opts={{
@@ -66,7 +40,7 @@ export default function MerchCarousel() {
       className="w-full"
     >
       <CarouselContent>
-        {merchItems.map((item) => (
+        {items.map((item) => (
           <CarouselItem key={item.id} className="basis-2/3 md:basis-1/2 lg:basis-1/3">
             <Card className="h-full">
               <CardHeader className="p-0">
@@ -82,7 +56,11 @@ export default function MerchCarousel() {
                 <p className="text-2xl font-semibold">€{item.price.toFixed(2)}</p>
               </CardContent>
               <CardFooter>
-                <Button className="w-full">Add to Cart</Button>
+                <Button className="w-full" asChild>
+                  <a href={item.link} target="_blank" rel="noopener noreferrer">
+                    Buy Now
+                  </a>
+                </Button>
               </CardFooter>
             </Card>
           </CarouselItem>

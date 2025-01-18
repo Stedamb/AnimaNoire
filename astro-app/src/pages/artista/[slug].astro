@@ -21,12 +21,12 @@ const artist = await getArtistBySlug(slug);
 
 <Layout title={`${artist.name} ${artist.surname} - Artist`}>
   <div class="relative">
-    <section class="relative h-[50vh] min-h-[400px] w-full overflow-hidden">
+    <section class="relative h-[50vh] min-h-[400px] w-full overflow-hidden bg-black">
       {
         artist.mainImage ? (
           <>
             <img
-              class="h-full w-full object-cover"
+              class="mx-auto h-full w-full max-w-4xl object-cover"
               src={urlFor(artist.mainImage).width(1920).height(1080).url()}
               alt={`${artist.name} ${artist.surname}`}
             />
@@ -37,46 +37,95 @@ const artist = await getArtistBySlug(slug);
         )
       }
       <div class="absolute bottom-0 left-0 right-0 p-8">
-        <div class="mx-auto max-w-[1200px]">
-          <div class="text-4xl font-bold md:text-5xl lg:text-6xl">
-            {artist.name}
-            {artist.surname}
+        <div class="mx-auto max-w-[1000px]">
+          <div class="flex flex-col gap-2">
+            <!-- {
+              artist.mainImage && (
+                <div class="h-24 w-24 overflow-hidden rounded-full border-4 border-primary/20 shadow-xl md:h-32 md:w-32 lg:h-40 lg:w-40">
+                  <img
+                    class="h-full w-full object-cover"
+                    src={urlFor(artist.mainImage).width(400).height(400).url()}
+                    alt={`${artist.name} ${artist.surname}`}
+                  />
+                </div>
+              )
+            } -->
+            <div class="text-4xl font-bold md:text-5xl lg:text-6xl">
+              {artist.name}
+              {artist.surname}
+              {
+                artist.ruolo && (
+                  <span class="text-3xl lg:text-4xl font-light text-muted-foreground">{artist.ruolo}</span>
+                )
+              }
+            </div>
+            <!-- {artist.instagram && (
+              <a href={artist.instagram} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-primary hover:text-primary/80">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5">
+                  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                </svg>
+                <span>@{String(artist.instagram).replace('https://www.instagram.com/', '').replace('/', '') || artist.instagram}</span>
+              </a>
+            )} -->
+            {
+              artist.techniques && (
+                <div class="mt-4 flex flex-wrap gap-2">
+                  {artist.techniques.map((technique) => (
+                    <span class="font-bold rounded-full bg-primary/10 px-4 py-2 text-sm text-foreground">
+                      {technique.name}
+                    </span>
+                  ))}
+                </div>
+              )
+            }
           </div>
-          {
-            artist.techniques && (
-              <div class="mt-4 flex flex-wrap gap-2">
-                {artist.techniques.map((technique) => (
-                  <span class="text-bold rounded-full bg-primary/10 px-4 py-2 text-sm text-foreground">
-                    {technique.name}
-                  </span>
-                ))}
-              </div>
-            )
-          }
         </div>
       </div>
     </section>
 
     <!-- Content Section -->
-    <section class="mx-auto max-w-[1200px] px-8 py-12">
-      <div class="prose dark:prose-invert text-xl">
-        {artist.body && <PortableText value={artist.body} />}
+    <section class="bg-background">
+      <div class="mx-auto max-w-[900px] px-8 py-6 lg:py-12">
+        <div class="prose dark:prose-invert text-xl">
+          {artist.body && <PortableText value={artist.body} />}
+        </div>
       </div>
     </section>
 
     <!-- Artworks Section -->
     {
       artist.artworks && artist.artworks.length > 0 && (
-        <section class="mx-auto max-w-[1200px] px-8 py-12">
+        <section class="mx-auto max-w-[1200px] px-8 py-6 lg:py-12">
           <h2 class="mb-8 text-3xl font-bold">Artworks</h2>
-          <GalleryGrid 
-            client:load 
-            images={artist.artworks.map(artwork => ({
+          <GalleryGrid
+            client:load
+            images={artist.artworks.map((artwork) => ({
               url: urlFor(artwork.image).url(),
               title: artwork.title,
-              technique: artwork.technique?.name
-            }))} 
+              technique: artwork.technique?.name,
+            }))}
           />
+        </section>
+      )
+    }
+
+    {
+      artist.galleryImages && artist.galleryImages.length > 0 && (
+        <section class="bg-gradient-to-b from-background to-muted px-8 py-16">
+          <div class="mx-auto max-w-[1000px]">
+            <h2 class="mb-8 text-3xl font-bold">Galleria Artista</h2>
+            <GalleryGrid
+              client:load
+              images={artist.galleryImages
+                .filter(img => img?.asset)
+                .map((image) => ({
+                  url: urlFor(image.asset).url(),
+                  title: image.alt || `${artist.name} ${artist.surname}`
+                }))}
+            />
+          </div>
         </section>
       )
     }

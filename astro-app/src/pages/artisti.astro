@@ -47,7 +47,7 @@ const artists = (await getAllArtists()) as Artist[];
                   <div class="absolute inset-0 bg-gradient-to-b from-transparent to-gray-900 opacity-50 shadow-lg" />
                   <div class="absolute bottom-0 flex w-full flex-col p-4">
                     <div class="font-semibold text-muted-foreground">
-                      {artist.techniques?.map((technique) => technique.name).join(', ') || ''}
+                      {artist.ruolo || ''}
                     </div>
                     <h3 class="font-semibold text-foreground">
                       {artist.name} {artist.surname}

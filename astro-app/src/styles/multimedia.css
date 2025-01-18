@@ -21,6 +21,10 @@
   z-index: -2;
 }
 
+.radial-gradient {
+  background: radial-gradient(circle at center, transparent 0%, hsl(var(--background)) 100%);
+}
+
 /* .lazyload::after {
     content: '';
     display: flex;

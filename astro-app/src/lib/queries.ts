@@ -3,6 +3,7 @@ export const allArtistsQuery = `*[_type == "artist"] {
   _id,
   name,
   surname,
+  ruolo,
   "slug": slug.current,
   mainImage {
     asset->,
@@ -21,9 +22,23 @@ export const artistBySlugQuery = `*[_type == "artist" && slug.current == $slug][
   _id,
   name,
   surname,
+  ruolo,
+  instagram,
   "slug": slug.current,
   mainImage {
     asset->,
+    alt
+  },
+  galleryImages[] {
+    _type,
+    asset-> {
+      _id,
+      _type,
+      url,
+      metadata {
+        dimensions
+      }
+    },
     alt
   },
   "techniques": techniques[]-> {
@@ -58,6 +73,7 @@ export const allArtworksQuery = `*[_type == "artwork"] {
     _id,
     name,
     surname,
+    ruolo,
     "slug": slug.current
   },
   "technique": technique-> {
@@ -81,6 +97,7 @@ export const artworkBySlugQuery = `*[_type == "artwork" && slug.current == $slug
     _id,
     name,
     surname,
+    ruolo,
     "slug": slug.current,
     mainImage {
       asset->,
@@ -123,6 +140,7 @@ export const techniqueBySlugQuery = `*[_type == "technique" && slug.current == $
     "artist": artist-> {
       name,
       surname,
+      ruolo,
       "slug": slug.current
     }
   },
@@ -130,6 +148,7 @@ export const techniqueBySlugQuery = `*[_type == "technique" && slug.current == $
     _id,
     name,
     surname,
+    ruolo,
     "slug": slug.current,
     mainImage {
       asset->,
@@ -158,6 +177,7 @@ export const searchQuery = `{
     _id,
     name,
     surname,
+    ruolo,
     "slug": slug.current,
     mainImage {
       asset->,

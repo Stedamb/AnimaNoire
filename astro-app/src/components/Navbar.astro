@@ -1,6 +1,6 @@
 ---
 import { Button } from '@/components/ui/button';
-import { MobileDrawer } from '@/components/react/MobileDrawer';
+import MobileMenu from '@/components/react/MobileMenu';
 import { Phone } from 'lucide-astro';
 import { routes } from '@/routes/routes';
 
@@ -9,10 +9,10 @@ const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === '/';
 ---
 
-<div class="absolute left-0 top-0 z-10 w-full">
+<div id="navbar" class="absolute left-0 top-0 z-20 w-full transition-all">
   {/* Mobile Menu */}
-  <MobileDrawer client:load />
-  <a class="absolute right-6 top-6 md:hidden" href="/">
+  <MobileMenu client:load />
+  <a class="absolute right-6 top-6 lg:hidden" href="/">
     <Phone size={32} />
   </a>
 
@@ -25,7 +25,7 @@ const isHomePage = currentPath === '/';
   }
 
   {/* Desktop Menu */}
-  <div class="hidden gap-4 p-6 md:flex">
+  <div class="hidden gap-4 p-6 lg:flex">
     {
       routes.map((route) => (
         <Button variant="link" size="sm">
@@ -35,8 +35,60 @@ const isHomePage = currentPath === '/';
         </Button>
       ))
     }
-    <Button variant="link" size="sm" className="ml-auto">
-      <a class="text-2xl text-white" href="/">Prenota</a>
+    <Button variant="none" size="sm" className="ml-auto">
+      <a class="text-2xl text-white flex items-center hover:border-b border-white" href="phoneto:+1 (234) 567-890"><Phone size={32} class="!size-5 mr-2"/>Prenota</a>
     </Button>
   </div>
 </div>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  let lastScroll = window.scrollY;
+
+  const handleScroll = () => {
+    const currentScroll = window.scrollY;
+
+    if (currentScroll > window.innerHeight * 0.8) {
+      // After 80%, show navbar with animation
+      navbar?.classList.remove('absolute', 'hidden');
+      navbar?.classList.add('fixed', 'bg-background/80', 'backdrop-blur-lg', 'shadow-md');
+
+      if (currentScroll < lastScroll) {
+        // Scrolling up after 80%
+        navbar?.classList.remove('-translate-y-full');
+        navbar?.classList.add('translate-y-0');
+      } else {
+        // Scrolling down after 80%
+        navbar?.classList.remove('translate-y-0');
+        navbar?.classList.add('-translate-y-full');
+      }
+    } else if (currentScroll > window.innerHeight * 0.5) {
+      // Between 50% and 80%, hide navbar
+      navbar?.classList.remove('absolute', 'translate-y-0');
+      navbar?.classList.add(
+        'hidden',
+        'fixed',
+        '-translate-y-full',
+        'bg-background/80',
+        'backdrop-blur-lg',
+        'shadow-md'
+      );
+    } else {
+      // Before 50%, show navbar at top
+      navbar?.classList.remove(
+        'hidden',
+        'fixed',
+        '-translate-y-full',
+        'translate-y-0',
+        'bg-background/80',
+        'backdrop-blur-lg',
+        'shadow-md'
+      );
+      navbar?.classList.add('absolute');
+    }
+
+    lastScroll = currentScroll;
+  };
+
+  window.addEventListener('scroll', handleScroll);
+</script>

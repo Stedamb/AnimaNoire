@@ -2,12 +2,12 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'merchandise',
-  title: 'Merchandise',
+  title: 'Merchandising',
   type: 'document',
   fields: [
     defineField({
       name: 'name',
-      title: 'Name',
+      title: 'Nome',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -23,24 +23,24 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Descrizione',
       type: 'text',
     }),
     defineField({
       name: 'price',
-      title: 'Price',
+      title: 'Prezzo',
       type: 'number',
       validation: (Rule) => Rule.required().positive(),
     }),
     defineField({
       name: 'link',
-      title: 'Purchase Link',
+      title: 'Collegamento di Acquisto',
       type: 'url',
       validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'image',
-      title: 'Product Image',
+      title: 'Immagine del Prodotto',
       type: 'image',
       options: {
         hotspot: true,
@@ -48,7 +48,7 @@ export default defineType({
       fields: [
         defineField({
           name: 'alt',
-          title: 'Alternative text',
+          title: 'Testo Alternativo',
           type: 'string',
           validation: (Rule) => Rule.required(),
         }),

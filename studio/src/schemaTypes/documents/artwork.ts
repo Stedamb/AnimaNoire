@@ -2,12 +2,12 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'artwork',
-  title: 'Artwork',
+  title: 'Tattoo',
   type: 'document',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Titolo',
       type: 'string',
     }),
     defineField({
@@ -21,8 +21,20 @@ export default defineType({
       },
     }),
     defineField({
+      name: 'ruolo',
+      title: 'Ruolo',
+      type: 'string',
+      description: 'Ruolo o posizione dell\'opera',
+    }),
+    defineField({
+      name: 'instagram',
+      title: 'Instagram',
+      type: 'url',
+      description: 'Link al profilo Instagram',
+    }),
+    defineField({
       name: 'image',
-      title: 'Image',
+      title: 'Immagine',
       type: 'image',
       options: {
         hotspot: true,
@@ -30,7 +42,7 @@ export default defineType({
       fields: [
         defineField({
           name: 'alt',
-          title: 'Alternative text',
+          title: 'Testo Alternativo',
           type: 'string',
         }),
       ],
@@ -38,19 +50,19 @@ export default defineType({
     }),
     defineField({
       name: 'artist',
-      title: 'Artist',
+      title: 'Artista',
       type: 'reference',
       to: [{type: 'artist'}],
     }),
     defineField({
       name: 'technique',
-      title: 'Technique',
+      title: 'Tecnica',
       type: 'reference',
       to: [{type: 'technique'}],
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Descrizione',
       type: 'blockContent',
     }),
   ],
@@ -62,7 +74,7 @@ export default defineType({
     },
     prepare(selection) {
       const {artist} = selection
-      return {...selection, subtitle: artist ? `by ${artist}` : 'No artist specified'}
+      return {...selection, subtitle: artist ? `di ${artist}` : 'Nessun artista specificato'}
     },
   },
 })

@@ -18,11 +18,22 @@ export interface Artist {
   _type: 'artist';
   name: string;
   surname: string;
+  ruolo?: string;
   slug: string;
   mainImage?: ImageAsset & { alt?: string };
   techniques?: Technique[];
   body?: PortableTextBlock[];
   artworks?: Artwork[];
+  instagram?: string;
+  galleryImages?: {
+    _type: string;
+    asset: {
+      _id: string;
+      _type: string;
+      url: string;
+    };
+    alt?: string;
+  }[];
 }
 
 export interface Artwork {

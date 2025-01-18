@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { X } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface LightboxProps {
@@ -12,21 +12,28 @@ interface LightboxProps {
   }[];
   currentIndex: number;
   onClose: () => void;
+  onIndexChange: (index: number) => void;
 }
 
-export function Lightbox({ images, currentIndex, onClose }: LightboxProps) {
+export function Lightbox({ images, currentIndex, onClose, onIndexChange }: LightboxProps) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       switch (e.key) {
         case 'Escape':
           onClose();
           break;
+        case 'ArrowLeft':
+          onIndexChange(Math.max(0, currentIndex - 1));
+          break;
+        case 'ArrowRight':
+          onIndexChange(Math.min(images.length - 1, currentIndex + 1));
+          break;
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onClose]);
+  }, [onClose, onIndexChange, currentIndex, images.length]);
 
   return (
     <AnimatePresence>
@@ -45,6 +52,32 @@ export function Lightbox({ images, currentIndex, onClose }: LightboxProps) {
         >
           <X className="h-8 w-8" />
         </button>
+
+        {/* Navigation Buttons */}
+        {currentIndex > 0 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onIndexChange(currentIndex - 1);
+            }}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-white hover:opacity-75 transition-opacity"
+            aria-label="Previous image"
+          >
+            <ChevronLeft className="h-8 w-8" />
+          </button>
+        )}
+        {currentIndex < images.length - 1 && (
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              onIndexChange(currentIndex + 1);
+            }}
+            className="absolute right-4 top-1/2 -translate-y-1/2 text-white hover:opacity-75 transition-opacity"
+            aria-label="Next image"
+          >
+            <ChevronRight className="h-8 w-8" />
+          </button>
+        )}
 
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}

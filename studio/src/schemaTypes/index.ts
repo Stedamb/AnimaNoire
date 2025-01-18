@@ -1,5 +1,5 @@
 import blockContent from './objects/blockContent'
-import artist from './documents/post'
+import artist from './documents/artist'
 import artwork from './documents/artwork'
 import technique from './documents/technique'
 import merchandise from './documents/merchandise'

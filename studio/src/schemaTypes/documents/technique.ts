@@ -2,12 +2,12 @@ import {defineField, defineType} from 'sanity'
 
 export default defineType({
   name: 'technique',
-  title: 'Technique',
+  title: 'Tecnica',
   type: 'document',
   fields: [
     defineField({
       name: 'name',
-      title: 'Name',
+      title: 'Nome',
       type: 'string',
       validation: (Rule) => Rule.required(),
     }),
@@ -23,7 +23,7 @@ export default defineType({
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Descrizione',
       type: 'text',
     }),
   ],

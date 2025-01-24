@@ -14,7 +14,6 @@ interface GalleryImage {
   id: string;
   src: string;
   alt: string;
-  title: string;
   artist?: string;
 }
 
@@ -46,7 +45,6 @@ export default function GallerySlider({ images }: GallerySliderProps) {
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
-                <h3 className="text-xl font-semibold text-white">{image.title}</h3>
                 {image.artist && (
                   <p className="text-gray-300">{image.artist}</p>
                 )}

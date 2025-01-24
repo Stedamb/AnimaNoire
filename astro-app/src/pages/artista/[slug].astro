@@ -94,23 +94,6 @@ const artist = await getArtistBySlug(slug);
       </div>
     </section>
 
-    <!-- Artworks Section -->
-    {
-      artist.artworks && artist.artworks.length > 0 && (
-        <section class="mx-auto max-w-[1200px] px-8 py-6 lg:py-12">
-          <h2 class="mb-8 text-3xl font-bold">Artworks</h2>
-          <GalleryGrid
-            client:load
-            images={artist.artworks.map((artwork) => ({
-              url: urlFor(artwork.image).url(),
-              title: artwork.title,
-              technique: artwork.technique?.name,
-            }))}
-          />
-        </section>
-      )
-    }
-
     {
       artist.galleryImages && artist.galleryImages.length > 0 && (
         <section class="bg-gradient-to-b from-background to-muted px-8 py-16">
@@ -121,8 +104,10 @@ const artist = await getArtistBySlug(slug);
               images={artist.galleryImages
                 .filter(img => img?.asset)
                 .map((image) => ({
-                  url: urlFor(image.asset).url(),
-                  title: image.alt || `${artist.name} ${artist.surname}`
+                  id: image.asset._id,
+                  src: urlFor(image.asset).url(),
+                  alt: image.alt || `${artist.name} ${artist.surname}`,
+                  artist: `${artist.name} ${artist.surname}`
                 }))}
             />
           </div>

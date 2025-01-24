@@ -171,6 +171,17 @@ export const allMerchQuery = `*[_type == "merchandise"] {
   "slug": slug.current
 }`
 
+// Get all gallery images from all artists
+export const allGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)] {
+  _id,
+  name,
+  surname,
+  "galleryImages": galleryImages[] {
+    "asset": asset->,
+    alt
+  }
+}`
+
 // Search across all content types
 export const searchQuery = `{
   "artists": *[_type == "artist" && (name match $searchTerm || surname match $searchTerm)] {

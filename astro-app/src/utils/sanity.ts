@@ -1,4 +1,5 @@
 import { sanityClient } from 'sanity:client';
+import { urlFor } from '@/utils/image';
 import type { PortableTextBlock } from '@portabletext/types';
 import type { ImageAsset } from '@sanity/types';
 
@@ -11,6 +12,7 @@ import {
   techniqueBySlugQuery,
   searchQuery,
   allMerchQuery,
+  allGalleryImagesQuery,
 } from '../lib/queries';
 
 export interface Artist {
@@ -115,6 +117,49 @@ export async function getAllMerch(): Promise<Merch[]> {
     return result;
   } catch (error) {
     console.error('Error fetching merch:', error);
+    return [];
+  }
+}
+
+// Gallery images query
+export const getAllGalleryImages = async () => {
+  try {
+    const artists = await sanityClient.fetch(allGalleryImagesQuery);
+    console.log('Artists with gallery images:', artists);
+    
+    if (!artists || artists.length === 0) {
+      console.log('No gallery images found');
+      return [];
+    }
+
+    const allImages = artists.flatMap(artist => {
+      console.log(`Processing artist: ${artist.name} ${artist.surname}`);
+      console.log('Gallery images:', artist.galleryImages);
+      
+      return (artist.galleryImages || [])
+        .filter(image => {
+          const isValid = image && image.asset;
+          if (!isValid) {
+            console.log('Filtered out invalid image:', image);
+          }
+          return isValid;
+        })
+        .map((image, index) => {
+          const imageUrl = urlFor(image.asset).url();
+          console.log('Generated image URL:', imageUrl);
+          return {
+            id: image.asset._id,
+            src: imageUrl,
+            alt: image.alt || `${artist.name} ${artist.surname}'s work`,
+            artist: `${artist.name} ${artist.surname}`
+          };
+        });
+    });
+
+    console.log('Final processed images:', allImages);
+    return allImages;
+  } catch (error) {
+    console.error('Error fetching gallery images:', error);
     return [];
   }
 }

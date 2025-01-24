@@ -1,8 +1,9 @@
+---
+import HeaderCarousel from "@/components/react/HeaderCarousel";
+---
+
 <div class="lazyload shaded relative h-screen">
-  <video class="h-full w-full object-cover" autoplay loop muted>
-    <source src="/video/tattoo.mp4" type="video/mp4" />
-    Sorry, your browser doesn&apos;t support videos.
-  </video>
+  <HeaderCarousel client:load />
   <div class="darken absolute inset-0"></div>
   <div class="absolute w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center mix-blend-lighten">
     <img src="/logo.svg" alt="Logo" width="640" height="640" class="px-8" />

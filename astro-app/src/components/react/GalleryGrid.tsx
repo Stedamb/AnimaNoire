@@ -4,9 +4,10 @@ import { Lightbox } from '../ui/lightbox';
 
 interface GalleryGridProps {
   images: {
-    url: string;
-    title?: string;
-    technique?: string;
+    id: string;
+    src: string;
+    alt: string;
+    artist?: string;
   }[];
 }
 
@@ -24,7 +25,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
       <div className="max-w-7xl mx-auto gap-4 columns-2 lg:columns-3 [&>div]:mb-4">
         {images.map((image, index) => (
           <motion.div
-            key={index}
+            key={image.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.2 }}
@@ -34,11 +35,15 @@ export function GalleryGrid({ images }: GalleryGridProps) {
               onClick={() => openLightbox(index)}
             >
               <img
-                src={image.url}
-                alt={image.title || ''}
+                src={image.src}
+                alt={image.alt}
                 className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-4">
+                {image.artist && (
+                  <p className="text-white text-sm">{image.artist}</p>
+                )}
+              </div>
             </div>
           </motion.div>
         ))}
@@ -46,7 +51,7 @@ export function GalleryGrid({ images }: GalleryGridProps) {
 
       {lightboxOpen && (
         <Lightbox
-          images={images}
+          images={images.map(img => ({ url: img.src, title: img.artist || '' }))}
           currentIndex={currentImageIndex}
           onClose={() => setLightboxOpen(false)}
           onIndexChange={setCurrentImageIndex}

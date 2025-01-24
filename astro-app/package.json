@@ -29,6 +29,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "embla-carousel-autoplay": "^8.5.1",
+    "embla-carousel-fade": "^8.5.2",
     "embla-carousel-react": "^8.5.1",
     "groq": "3.48.1",
     "lucide-astro": "^0.468.0",

@@ -1,17 +1,9 @@
 ---
 import GallerySlider from '@/components/react/GallerySlider';
 import { Button } from '@/components/ui/button';
-import { getAllArtworks } from '@/utils/sanity';
-import { urlFor } from '@/utils/image';
+import { getAllGalleryImages } from '@/utils/sanity';
 
-const artworks = await getAllArtworks();
-const galleryImages = artworks.map(artwork => ({
-  id: artwork._id,
-  src: urlFor(artwork.image).url(),
-  alt: artwork.title,
-  title: artwork.title,
-  artist: artwork.artist ? `${artwork.artist.name} ${artwork.artist.surname}` : undefined
-}));
+const galleryImages = await getAllGalleryImages();
 ---
 
 <section id="gallery" class="relative w-full overflow-hidden py-20">

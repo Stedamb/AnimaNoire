@@ -21,14 +21,14 @@ import tailwind from '@astrojs/tailwind';
 // https://astro.build/config
 export default defineConfig({
   output: 'static',
+  adapter: vercel(),
   integrations: [
     sanity({
       projectId,
       dataset,
-      // studioBasePath: "/admin",
       useCdn: true,
       apiVersion: '2024-12-08', // Set to date of setup to use the latest API version
-    }), // Required for Sanity Studio
+    }),
     react(),
     tailwind({ applyBaseStyles: false }),
   ],

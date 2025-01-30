@@ -104,10 +104,14 @@ const artist = await getArtistBySlug(slug);
               images={artist.galleryImages
                 .filter(img => img?.asset)
                 .map((image) => ({
-                  id: image.asset._id,
-                  src: urlFor(image.asset).url(),
-                  alt: image.alt || `${artist.name} ${artist.surname}`,
-                  artist: `${artist.name} ${artist.surname}`
+                  _key: image.asset._id,
+                  asset: {
+                    _id: image.asset._id,
+                    _type: image.asset._type,
+                    url: urlFor(image.asset).url()
+                  },
+                  alt: image.alt || `${artist.name} ${artist.surname} artwork`,
+                  artistName: `${artist.name} ${artist.surname}`
                 }))}
             />
           </div>

@@ -63,13 +63,13 @@ const HeaderCarousel = () => {
         </CarouselContent>
       </Carousel>
       
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-4 z-20">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-6 z-20">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
             className={cn(
-              'w-2 h-2 rounded-full transition-all',
+              'size-4 rounded-full transition-all',
               current === index ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'
             )}
             aria-label={`Go to slide ${index + 1}`}

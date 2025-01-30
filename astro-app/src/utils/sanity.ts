@@ -78,13 +78,21 @@ export interface SearchResults {
 }
 
 export interface GalleryImage {
-  id: string;
-  url: string;
-  alt?: string;
-  artist: {
-    name: string;
-    surname: string;
+  artist: any;
+  _key: string;
+  asset: {
+    _id: string;
+    _type: string;
+    url?: string;
   };
+  alt?: string;
+}
+
+export interface ArtistWithGallery {
+  _id: string;
+  name: string;
+  surname: string;
+  galleryImages: GalleryImage[];
 }
 
 // Artists queries
@@ -122,20 +130,20 @@ export async function getAllMerch(): Promise<Merch[]> {
 }
 
 // Gallery images query
-export async function getAllGalleryImages(): Promise<GalleryImage[]> {
+export async function getAllGalleryImages(): Promise<ArtistWithGallery[]> {
   try {
-    const images = await sanityClient.fetch<GalleryImage[]>(allGalleryImagesQuery);
-    return images || [];
+    const artists = await sanityClient.fetch<ArtistWithGallery[]>(allGalleryImagesQuery);
+    return artists || [];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
     return [];
   }
 }
 
-export async function getLimitedGalleryImages(): Promise<GalleryImage[]> {
+export async function getLimitedGalleryImages(): Promise<ArtistWithGallery[]> {
   try {
-    const images = await sanityClient.fetch<GalleryImage[]>(limitedGalleryImagesQuery);
-    return images || [];
+    const artists = await sanityClient.fetch<ArtistWithGallery[]>(limitedGalleryImagesQuery);
+    return artists || [];
   } catch (error) {
     console.error('Error fetching limited gallery images:', error);
     return [];

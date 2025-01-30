@@ -152,26 +152,28 @@ export const allMerchQuery = `*[_type == "merchandise"] {
 }`
 
 // Get all gallery images from all artists (for gallery page)
-export const allGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)].galleryImages[]{
-  "id": asset->._id,
-  "url": asset->url->url + "?w=600&q=80",
-  alt,
-  "artist": {
-    name: ^.name,
-    surname: ^.surname
+export const allGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)] {
+  _id,
+  name,
+  surname,
+  "galleryImages": galleryImages[] {
+    _key,
+    asset->,
+    alt
   }
-}`
+}`;
 
 // Get limited gallery images for homepage slider
-export const limitedGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)].galleryImages[0..1]{
-  "id": asset->._id,
-  "url": asset->url->url + "?w=600&q=80",
-  alt,
-  "artist": {
-    name: ^.name,
-    surname: ^.surname
+export const limitedGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)] {
+  _id,
+  name,
+  surname,
+  "galleryImages": galleryImages[0..1] {
+    _key,
+    asset->,
+    alt
   }
-}`
+}`;
 
 // Search across all content types
 export const searchQuery = `{

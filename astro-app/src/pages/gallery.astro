@@ -2,16 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import { GalleryGrid } from '@/components/react/GalleryGrid';
 import { getAllGalleryImages } from '@/utils/sanity';
-import { urlFor } from '@/utils/image';
-import type { GalleryImage } from '@/utils/sanity';
 
-const images = await getAllGalleryImages();
-const galleryImages = images.map((image) => ({
-  id: image.id,
-  src: urlFor({ _ref: image.id }).width(1200).quality(80).url(),
-  alt: image.alt || `${image.artist.name}'s work`,
-  artist: `${image.artist.name} ${image.artist.surname}`
-}));
+const artists = await getAllGalleryImages();
+const images = artists.flatMap(artist => 
+  (artist.galleryImages || []).map(img => ({
+    ...img,
+    artistName: `${artist.name} ${artist.surname}`
+  }))
+);
+
 ---
 
 <Layout title="Gallery | Anima Noire Tattoo Atelier">
@@ -28,12 +27,18 @@ const galleryImages = images.map((image) => ({
   </section>
 
   <section class="container mx-auto px-4 py-8">
-    <GalleryGrid client:load images={galleryImages} />
+    <GalleryGrid client:load images={images} />
   </section>
 </Layout>
 
 <script>
   import { setupAnimations } from "@/utils/animations";
+  
+  // Setup animations on initial load
+  setupAnimations(document.body);
 
-  setupAnimations(document.getElementById("gallery-header")! as HTMLElement);
+  // Re-run animations on client-side navigation
+  document.addEventListener('astro:page-load', () => {
+    setupAnimations(document.body);
+  });
 </script>

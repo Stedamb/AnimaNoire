@@ -9,16 +9,11 @@ import {
 } from '@/components/ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import { useRef } from 'react';
-
-interface GalleryImage {
-  id: string;
-  src: string;
-  alt: string;
-  artist?: string;
-}
+import type { GalleryImage } from '@/utils/sanity';
+import { urlFor } from '@/utils/image';
 
 interface GallerySliderProps {
-  images: GalleryImage[];
+  images: (GalleryImage & { artistName?: string })[];
 }
 
 export default function GallerySlider({ images }: GallerySliderProps) {
@@ -26,37 +21,46 @@ export default function GallerySlider({ images }: GallerySliderProps) {
     Autoplay({ delay: 4000, stopOnInteraction: true })
   );
 
+  const validImages = images.filter(img => img && img.asset && img._key);
+
+  if (validImages.length === 0) {
+    return null;
+  }
+
   return (
     <Carousel
       plugins={[plugin.current]}
       className="w-full"
       opts={{
-        align: 'center',
+        align: 'start',
         loop: true,
       }}
     >
       <CarouselContent>
-        {images.map((image) => (
-          <CarouselItem key={image.id} className="lg:basis-2/3">
-            <div className="relative aspect-[16/9] w-full overflow-hidden group">
-              <img
-                src={image.src}
-                alt={image.alt}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-6">
-                {image.artist && (
-                  <p className="text-gray-300">{image.artist}</p>
-                )}
+        {validImages.map((image) => {
+          const imageUrl = urlFor(image.asset).url();
+          if (!imageUrl) return null;
+
+          return (
+            <CarouselItem key={image._key} className="md:basis-1/2 lg:basis-1/3">
+              <div className="relative aspect-square overflow-hidden rounded-lg">
+                <img
+                  src={imageUrl}
+                  alt={image.alt || ''}
+                  className="h-full w-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex flex-col justify-end p-4">
+                  {image.artistName && (
+                    <p className="text-white text-sm">{image.artistName}</p>
+                  )}
+                </div>
               </div>
-            </div>
-          </CarouselItem>
-        ))}
+            </CarouselItem>
+          );
+        })}
       </CarouselContent>
-      <div className="flex justify-center gap-2 pt-4">
-        <CarouselPrevious className="static !m-0 translate-y-0" />
-        <CarouselNext className="static !m-0 translate-y-0" />
-      </div>
+      <CarouselPrevious />
+      <CarouselNext />
     </Carousel>
   );
 }

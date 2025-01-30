@@ -3,7 +3,7 @@ import type { InferGetStaticParamsType } from 'astro';
 import { PortableText } from 'astro-portabletext';
 import Layout from '../../layouts/Layout.astro';
 import { urlFor } from '../../utils/image';
-import { getArtistBySlug, getAllArtists } from '../../utils/sanity';
+import { getArtistBySlug, getAllArtists, type GalleryImage } from '../../utils/sanity';
 import { GalleryGrid } from '../../components/react/GalleryGrid';
 
 export async function getStaticPaths() {
@@ -103,13 +103,14 @@ const artist = await getArtistBySlug(slug);
               client:load
               images={artist.galleryImages
                 .filter(img => img?.asset)
-                .map((image) => ({
+                .map((image): GalleryImage & { artistName?: string } => ({
                   _key: image.asset._id,
                   asset: {
                     _id: image.asset._id,
                     _type: image.asset._type,
                     url: urlFor(image.asset).url()
                   },
+                  artist: { _id: artist._id, name: artist.name, surname: artist.surname },
                   alt: image.alt || `${artist.name} ${artist.surname} artwork`,
                   artistName: `${artist.name} ${artist.surname}`
                 }))}

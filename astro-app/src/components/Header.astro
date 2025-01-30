@@ -3,10 +3,10 @@ import HeaderCarousel from "@/components/react/HeaderCarousel";
 ---
 
 <div class="lazyload shaded relative h-screen">
-  <HeaderCarousel client:load />
+  <HeaderCarousel client:only="react" />
   <div class="darken absolute inset-0"></div>
   <div class="absolute w-full left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex items-center justify-center mix-blend-lighten">
     <img src="/logo.svg" alt="Logo" width="640" height="640" class="px-8" />
-    <div class="absolute top-[105%] text-2xl lg:text-4xl">Coming Soon</div>
+    <!-- <div class="absolute top-[105%] text-2xl lg:text-4xl">Coming Soon</div> -->
   </div>
 </div>

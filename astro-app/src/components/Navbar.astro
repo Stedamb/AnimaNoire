@@ -9,7 +9,7 @@ const currentPath = Astro.url.pathname;
 const isHomePage = currentPath === '/';
 ---
 
-<div id="navbar" class="absolute left-0 top-0 z-20 w-full transition-all">
+<div id="navbar" class="absolute left-0 top-0 z-30 w-full transition-all">
   {/* Mobile Menu */}
   <MobileMenu client:load />
   <a class="absolute right-6 top-6 lg:hidden" href="/">

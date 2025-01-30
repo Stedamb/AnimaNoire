@@ -18,12 +18,12 @@ import { routes } from '@/routes/routes';
       <p class="text-2xl font-semibold">Anima Noire Tattoo Atelier</p>
       <div class="text-md mt-8">
         <a href="tel:+393202929963" class="flex items-start gap-2 underline">
-          <Phone size={18} />
+          <Phone class="flex-shrink-0" size={18} />
           +39 320 292 9963
         </a>
         <a href="mailto:animanera.tattoo.studio@gmail.com" class="mt-2 flex items-start gap-2 underline">
-          <Mail size={18} />
-          animanera.tattoo.studio@gmail.com
+          <Mail class="flex-shrink-0" size={18} />
+          <span class="break-all">animanera.tattoo.studio@gmail.com</span>
         </a>
         <div class="mt-8">
           <p class="text-md">Follow us on social media:</p>
@@ -50,7 +50,15 @@ import { routes } from '@/routes/routes';
       <div class="flex grow flex-col justify-between">
         {
           routes.map((item) => (
-            <a href={item.path} class="font-title text-4xl hover:text-muted-foreground">
+            <a 
+              href={item.path} 
+              class="font-title text-4xl hover:text-muted-foreground"
+              onclick={`event.preventDefault(); ${
+                item.path === '/' ? 
+                'if(window.location.pathname === "/") { window.scrollTo({ top: 0, behavior: "smooth" }); } else { window.location.href = "/"; }' :
+                'window.location.href = "' + item.path + '";'
+              }`}
+            >
               {item.label}
             </a>
           ))

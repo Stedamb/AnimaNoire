@@ -86,7 +86,7 @@ const MobileMenu = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-lg min-h-screen"
+            className="fixed inset-0 bg-black min-h-screen"
           >
             <div className="flex flex-col items-center justify-center min-h-screen">
               <motion.nav
@@ -99,6 +99,7 @@ const MobileMenu = () => {
                 {routes.map((item) => (
                   item.path === '/' && window.location.pathname === '/' ? (
                     <motion.div
+                    onClick={toggleMenu}
                       key={item.label}
                       variants={itemVariants}
                       className="font-regular font-title text-5xl text-foreground hover:text-primary transition-colors relative group"

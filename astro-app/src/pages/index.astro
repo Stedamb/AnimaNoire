@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Video from '@/components/Video.astro';
+import Header from '@/components/Header.astro';
 import { Button } from '@/components/ui/button';
 import Artists from '@/components/Artists.astro';
 import Merch from '@/components/Merch.astro';
@@ -9,16 +9,16 @@ import Reviews from '@/components/Reviews.astro';
 import Loader from '@/components/Loader.astro';
 ---
 
-<Layout title="Home | AnimaNoire Tattoo Atelier">
+<Layout title="Home | Anima Noire Tattoo Atelier">
   <Loader />
-  <Video />
-
+  <Header />
+<!-- 
   <section id="introduction"
     class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-36 text-center lg:pb-36"
   >
-    <h2 class="font-title text-balance text-5xl opacity-0" data-animation="fadeInUp" data-delay="0.2">AnimaNoire Tattoo Atelier</h2>
+    <h2 class="font-title text-balance text-5xl opacity-0" data-animation="fadeInUp" data-delay="0.2">Anima Noire Tattoo Atelier</h2>
     <p class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.4">
-      Benvenuti nel sito ufficiale di AnimaNoire Tattoo Atelier. Il nostro studio unisce arte e passione 
+      Benvenuti nel sito ufficiale di Anima Noire Tattoo Atelier. Il nostro studio unisce arte e passione 
       per creare tatuaggi unici e personali. Offriamo un'esperienza immersiva dove ogni dettaglio è 
       curato per trasformare le tue idee in arte sulla pelle.
     </p>
@@ -27,12 +27,12 @@ import Loader from '@/components/Loader.astro';
         <a href="/prenota">Prenota</a>
       </Button>
     </div>
-  </section>
+  </section> -->
 
-  <Artists />
+  <!-- <Artists /> -->
   <!-- <Merch /> -->
-  <Reviews />
-  <Gallery />
+  <!-- <Reviews /> -->
+  <!-- <Gallery /> -->
 </Layout>
 
 <script>

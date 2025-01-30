@@ -2,11 +2,19 @@
 import Layout from '../layouts/Layout.astro';
 import { GalleryGrid } from '@/components/react/GalleryGrid';
 import { getAllGalleryImages } from '@/utils/sanity';
+import { urlFor } from '@/utils/image';
+import type { GalleryImage } from '@/utils/sanity';
 
-const galleryImages = await getAllGalleryImages();
+const images = await getAllGalleryImages();
+const galleryImages = images.map((image) => ({
+  id: image.id,
+  src: urlFor({ _ref: image.id }).width(1200).quality(80).url(),
+  alt: image.alt || `${image.artist.name}'s work`,
+  artist: `${image.artist.name} ${image.artist.surname}`
+}));
 ---
 
-<Layout title="Gallery | AnimaNoire Tattoo Atelier">
+<Layout title="Gallery | Anima Noire Tattoo Atelier">
   <section
     id="gallery-header"
     class="mx-auto flex max-w-4xl flex-col items-center px-4 pb-20 pt-40 text-center"
@@ -19,7 +27,7 @@ const galleryImages = await getAllGalleryImages();
     </h2>
   </section>
 
-  <section id="gallery" class="relative px-4 bg-gradient-to-b from-background to-muted pb-20">
+  <section class="container mx-auto px-4 py-8">
     <GalleryGrid client:load images={galleryImages} />
   </section>
 </Layout>

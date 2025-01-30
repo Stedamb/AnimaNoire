@@ -9,10 +9,10 @@ export const routes: Route[] = [
     path: '/artisti',
     label: 'Artisti',
   },
-  {
-    path: 'https://animanoireshop.com/',
-    label: 'Shop',
-  },
+  // {
+  //   path: 'https://animanoireshop.com/',
+  //   label: 'Shop',
+  // },
   {
     path: '/gallery',
     label: 'Gallery',

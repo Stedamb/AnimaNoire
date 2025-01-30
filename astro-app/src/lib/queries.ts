@@ -1,12 +1,22 @@
 // Get all artists with their techniques
-export const allArtistsQuery = `*[_type == "artist"] {
+export const allArtistsQuery = `*[_type == "artist"] | order(
+  select(
+    name == "Jakub" => 0,
+    name == "Suela" => 1,
+    name == "Asia" => 2,
+    3
+  )
+) {
   _id,
   name,
   surname,
   ruolo,
   "slug": slug.current,
   mainImage {
-    asset->,
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=600&q=80"
+    },
     alt
   },
   "techniques": techniques[]-> {
@@ -26,18 +36,17 @@ export const artistBySlugQuery = `*[_type == "artist" && slug.current == $slug][
   instagram,
   "slug": slug.current,
   mainImage {
-    asset->,
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=600&q=80"
+    },
     alt
   },
   galleryImages[] {
     _type,
-    asset-> {
-      _id,
-      _type,
-      url,
-      metadata {
-        dimensions
-      }
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=800&q=80"
     },
     alt
   },
@@ -53,7 +62,10 @@ export const artistBySlugQuery = `*[_type == "artist" && slug.current == $slug][
     title,
     "slug": slug.current,
     image {
-      asset->,
+      "asset": asset->{
+        ...,
+        "url": asset->url + "?w=800&q=80"
+      },
       alt
     },
     description
@@ -66,7 +78,10 @@ export const allArtworksQuery = `*[_type == "artwork"] {
   title,
   "slug": slug.current,
   image {
-    asset->,
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=800&q=80"
+    },
     alt
   },
   "artist": artist-> {
@@ -90,7 +105,10 @@ export const artworkBySlugQuery = `*[_type == "artwork" && slug.current == $slug
   title,
   "slug": slug.current,
   image {
-    asset->,
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=800&q=80"
+    },
     alt
   },
   "artist": artist-> {
@@ -100,7 +118,10 @@ export const artworkBySlugQuery = `*[_type == "artwork" && slug.current == $slug
     ruolo,
     "slug": slug.current,
     mainImage {
-      asset->,
+      "asset": asset->{
+        ...,
+        "url": asset->url + "?w=600&q=80"
+      },
       alt
     }
   },
@@ -113,50 +134,6 @@ export const artworkBySlugQuery = `*[_type == "artwork" && slug.current == $slug
   description
 }`
 
-// Get all techniques with their artworks count
-export const allTechniquesQuery = `*[_type == "technique"] {
-  _id,
-  name,
-  "slug": slug.current,
-  description,
-  "artworksCount": count(*[_type == "artwork" && references(^._id)]),
-  "artistsCount": count(*[_type == "artist" && references(^._id)])
-}`
-
-// Get a single technique by slug with related artworks and artists
-export const techniqueBySlugQuery = `*[_type == "technique" && slug.current == $slug][0] {
-  _id,
-  name,
-  "slug": slug.current,
-  description,
-  "artworks": *[_type == "artwork" && references(^._id)] {
-    _id,
-    title,
-    "slug": slug.current,
-    image {
-      asset->,
-      alt
-    },
-    "artist": artist-> {
-      name,
-      surname,
-      ruolo,
-      "slug": slug.current
-    }
-  },
-  "artists": *[_type == "artist" && references(^._id)] {
-    _id,
-    name,
-    surname,
-    ruolo,
-    "slug": slug.current,
-    mainImage {
-      asset->,
-      alt
-    }
-  }
-}`
-
 // Get all merch items
 export const allMerchQuery = `*[_type == "merchandise"] {
   _id,
@@ -164,21 +141,35 @@ export const allMerchQuery = `*[_type == "merchandise"] {
   description,
   price,
   image {
-    asset->,
+    "asset": asset->{
+      ...,
+      "url": asset->url + "?w=800&q=80"
+    },
     alt
   },
   link,
   "slug": slug.current
 }`
 
-// Get all gallery images from all artists
-export const allGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)] {
-  _id,
-  name,
-  surname,
-  "galleryImages": galleryImages[] {
-    "asset": asset->,
-    alt
+// Get all gallery images from all artists (for gallery page)
+export const allGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)].galleryImages[]{
+  "id": asset->._id,
+  "url": asset->url->url + "?w=600&q=80",
+  alt,
+  "artist": {
+    name: ^.name,
+    surname: ^.surname
+  }
+}`
+
+// Get limited gallery images for homepage slider
+export const limitedGalleryImagesQuery = `*[_type == "artist" && defined(galleryImages)].galleryImages[0..1]{
+  "id": asset->._id,
+  "url": asset->url->url + "?w=600&q=80",
+  alt,
+  "artist": {
+    name: ^.name,
+    surname: ^.surname
   }
 }`
 
@@ -191,7 +182,10 @@ export const searchQuery = `{
     ruolo,
     "slug": slug.current,
     mainImage {
-      asset->,
+      "asset": asset->{
+        ...,
+        "url": asset->url + "?w=600&q=80"
+      },
       alt
     }
   },
@@ -200,7 +194,10 @@ export const searchQuery = `{
     title,
     "slug": slug.current,
     image {
-      asset->,
+      "asset": asset->{
+        ...,
+        "url": asset->url + "?w=800&q=80"
+      },
       alt
     },
     "artist": artist-> {

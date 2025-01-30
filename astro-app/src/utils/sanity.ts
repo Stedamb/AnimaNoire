@@ -8,11 +8,10 @@ import {
   artistBySlugQuery,
   allArtworksQuery,
   artworkBySlugQuery,
-  allTechniquesQuery,
-  techniqueBySlugQuery,
   searchQuery,
   allMerchQuery,
   allGalleryImagesQuery,
+  limitedGalleryImagesQuery,
 } from '../lib/queries';
 
 export interface Artist {
@@ -78,6 +77,16 @@ export interface SearchResults {
   techniques: Pick<Technique, '_id' | 'name' | 'slug' | 'description'>[];
 }
 
+export interface GalleryImage {
+  id: string;
+  url: string;
+  alt?: string;
+  artist: {
+    name: string;
+    surname: string;
+  };
+}
+
 // Artists queries
 export async function getAllArtists(): Promise<Artist[]> {
   return await sanityClient.fetch(allArtistsQuery);
@@ -96,20 +105,11 @@ export async function getArtworkBySlug(slug: string): Promise<Artwork> {
   return await sanityClient.fetch(artworkBySlugQuery, { slug });
 }
 
-// Techniques queries
-export async function getAllTechniques(): Promise<Technique[]> {
-  return await sanityClient.fetch(allTechniquesQuery);
-}
-
-export async function getTechniqueBySlug(slug: string): Promise<Technique> {
-  return await sanityClient.fetch(techniqueBySlugQuery, { slug });
-}
-
 // Merch queries
 export async function getAllMerch(): Promise<Merch[]> {
   try {
     const result = await sanityClient.fetch(allMerchQuery);
-    console.log('Sanity Response:', result);
+
     if (!result || result.length === 0) {
       console.log('No merch items found in Sanity');
       return [];
@@ -122,44 +122,22 @@ export async function getAllMerch(): Promise<Merch[]> {
 }
 
 // Gallery images query
-export const getAllGalleryImages = async () => {
+export async function getAllGalleryImages(): Promise<GalleryImage[]> {
   try {
-    const artists = await sanityClient.fetch(allGalleryImagesQuery);
-    console.log('Artists with gallery images:', artists);
-    
-    if (!artists || artists.length === 0) {
-      console.log('No gallery images found');
-      return [];
-    }
-
-    const allImages = artists.flatMap(artist => {
-      console.log(`Processing artist: ${artist.name} ${artist.surname}`);
-      console.log('Gallery images:', artist.galleryImages);
-      
-      return (artist.galleryImages || [])
-        .filter(image => {
-          const isValid = image && image.asset;
-          if (!isValid) {
-            console.log('Filtered out invalid image:', image);
-          }
-          return isValid;
-        })
-        .map((image, index) => {
-          const imageUrl = urlFor(image.asset).url();
-          console.log('Generated image URL:', imageUrl);
-          return {
-            id: image.asset._id,
-            src: imageUrl,
-            alt: image.alt || `${artist.name} ${artist.surname}'s work`,
-            artist: `${artist.name} ${artist.surname}`
-          };
-        });
-    });
-
-    console.log('Final processed images:', allImages);
-    return allImages;
+    const images = await sanityClient.fetch<GalleryImage[]>(allGalleryImagesQuery);
+    return images || [];
   } catch (error) {
     console.error('Error fetching gallery images:', error);
+    return [];
+  }
+}
+
+export async function getLimitedGalleryImages(): Promise<GalleryImage[]> {
+  try {
+    const images = await sanityClient.fetch<GalleryImage[]>(limitedGalleryImagesQuery);
+    return images || [];
+  } catch (error) {
+    console.error('Error fetching limited gallery images:', error);
     return [];
   }
 }

@@ -1,23 +1,35 @@
 ---
 import GallerySlider from '@/components/react/GallerySlider';
 import { Button } from '@/components/ui/button';
-import { getAllGalleryImages } from '@/utils/sanity';
+import { getLimitedGalleryImages } from '@/utils/sanity';
+import { urlFor } from '@/utils/image';
+import type { GalleryImage } from '@/utils/sanity';
 
-const galleryImages = await getAllGalleryImages();
+const images = await getLimitedGalleryImages();
+const galleryImages = images.map((image: GalleryImage) => ({
+  id: image.id,
+  src: urlFor({ _ref: image.id }).width(1200).quality(80).url(),
+  alt: image.alt || `${image.artist.name}'s work`,
+  artist: `${image.artist.name} ${image.artist.surname}`
+}));
 ---
 
 <section id="gallery" class="relative w-full overflow-hidden py-20">
   <div class="max-w-7xl mx-auto px-4">
-    <h2 class="font-title text-4xl mb-8 text-center opacity-0" data-animation="fadeInUp" data-delay="0.2">Our Latest Work</h2>
+    <h2 class="font-title text-5xl mb-8 text-center opacity-0" data-animation="fadeInUp" data-delay="0.2">Parlano le immagini</h2>
     <p class="text-xl text-center mb-8 max-w-2xl mx-auto opacity-0" data-animation="fadeIn" data-delay="0.4">
-      Esplora il nostro portfolio di tatuaggi personalizzati, ogni pezzo racconta la sua storia unica attraverso l'arte del tatuaggio giapponese.
+      Esplora il nostro portfolio di tatuaggi personalizzati, ogni pezzo racconta la sua storia unica attraverso l'arte del tatuaggio.
     </p>
     <Button className="flex mx-auto mb-12 opacity-0" data-animation="fadeInScale" data-delay="0.6">
-      <a href="/gallery">View Gallery</a>
+      <a href="/gallery">Alla Gallery</a>
     </Button>
   </div>
   <div class="relative opacity-0" data-animation="fadeInUp" data-delay="0.8">
-    <GallerySlider client:load images={galleryImages} />
+    <div class="w-full">
+      <div class="container mx-auto px-4 py-8">
+        <GallerySlider client:load images={galleryImages} />
+      </div>
+    </div>
   </div>
 </section>
 

@@ -97,24 +97,40 @@ const MobileMenu = () => {
                 className="flex flex-col items-center gap-12 py-8"
               >
                 {routes.map((item) => (
-                  <motion.a
-                    key={item.label}
-                    href={item.path}
-                    variants={itemVariants}
-                    className="font-regular font-title text-5xl text-foreground hover:text-primary transition-colors relative group"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      setIsOpen(false);
-                      document.body.style.overflow = 'unset';
-                    }}
-                  >
-                    {item.label}
-                    <motion.span
-                      className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary/50 group-hover:w-full transition-all duration-300"
-                      whileHover={{ width: "100%" }}
-                    />
-                  </motion.a>
+                  item.path === '/' && window.location.pathname === '/' ? (
+                    <motion.div
+                      key={item.label}
+                      variants={itemVariants}
+                      className="font-regular font-title text-5xl text-foreground hover:text-primary transition-colors relative group"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      {item.label}
+                      <motion.span
+                        className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary/50 group-hover:w-full transition-all duration-300"
+                        whileHover={{ width: "100%" }}
+                      />
+                    </motion.div>
+                  ) : (
+                    <motion.a
+                      key={item.label}
+                      href={item.path}
+                      variants={itemVariants}
+                      className="font-regular font-title text-5xl text-foreground hover:text-primary transition-colors relative group"
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      onClick={() => {
+                        setIsOpen(false);
+                        document.body.style.overflow = 'unset';
+                      }}
+                    >
+                      {item.label}
+                      <motion.span
+                        className="absolute -bottom-2 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary/50 group-hover:w-full transition-all duration-300"
+                        whileHover={{ width: "100%" }}
+                      />
+                    </motion.a>
+                  )
                 ))}
               </motion.nav>
             </div>

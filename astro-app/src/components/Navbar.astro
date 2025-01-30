@@ -29,20 +29,27 @@ const isHomePage = currentPath === '/';
     {
       routes.map((route) => (
         <Button variant="link" size="sm">
-          <a class="text-2xl text-white" href={route.path}>
-            {route.label}
-          </a>
+          {isHomePage && route.path === '/' ? (
+            <div class="text-2xl text-white">
+              {route.label}
+            </div>
+          ) : (
+            <a class="text-2xl text-white" href={route.path}>
+              {route.label}
+            </a>
+          )}
         </Button>
       ))
     }
     <Button variant="none" size="sm" className="ml-auto">
-      <a class="text-2xl text-white flex items-center hover:border-b border-white" href="phoneto:+1 (234) 567-890"><Phone size={32} class="!size-5 mr-2"/>Prenota</a>
+      <a class="text-2xl text-white flex items-center hover:border-b border-white" href="https://wa.me/393202929963"><Phone size={32} class="!size-5 mr-2"/>Prenota</a>
     </Button>
   </div>
 </div>
 
 <script>
   const navbar = document.getElementById('navbar');
+  const logo = navbar?.querySelector('img');
   let lastScroll = window.scrollY;
 
   const handleScroll = () => {
@@ -61,10 +68,13 @@ const isHomePage = currentPath === '/';
         // Scrolling down after 80%
         navbar?.classList.remove('translate-y-0');
         navbar?.classList.add('-translate-y-full');
+        logo?.classList.add('hidden');
       }
     } else if (currentScroll > window.innerHeight * 0.5) {
       // Between 50% and 80%, hide navbar
       navbar?.classList.remove('absolute', 'translate-y-0');
+      logo?.classList.remove('hidden');
+
       navbar?.classList.add(
         'hidden',
         'fixed',

@@ -9,22 +9,47 @@ const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.98576
   title="Contatti | Anima Noire Tattoo Atelier"
   description="Contattaci per prenotare un appuntamento o per maggiori informazioni sul nostro studio di tatuaggi a Rimini"
 >
-<section id="contatti" class="mx-4 lg:mx-auto max-w-4xl grid grid-cols-1 lg:grid-cols-2 pt-40 mb-4 lg:mb-[25vh]">
-    <h1 class=" font-title lg:col-span-2 text-5xl text-center opacity-0" data-animation="fadeInUp" data-delay="0.1">Contatti</h1>
+  <section
+    id="contatti"
+    class="mx-4 mb-4 grid max-w-4xl grid-cols-1 pt-40 lg:mx-auto lg:mb-[25vh] lg:grid-cols-2"
+  >
+    <h1
+      class="font-title text-center text-5xl opacity-0 lg:col-span-2"
+      data-animation="fadeInUp"
+      data-delay="0.1"
+    >
+      Contatti
+    </h1>
     <div class="pt-8">
-      <h2 class="font-bold text-balance text-2xl opacity-0" data-animation="fadeInUp" data-delay="0.2">
+      <h2
+        class="text-balance text-2xl font-bold opacity-0"
+        data-animation="fadeInUp"
+        data-delay="0.2"
+      >
         Dove siamo
       </h2>
       <p class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.3">
         Ci trovi a Bellaria Igea Marina, in via Torre 20a
       </p>
-      <h2 class="font-bold text-balance text-2xl pt-4 opacity-0"  data-animation="fadeIn" data-delay="0.4">Orari</h2>
+      <h2
+        class="text-balance pt-4 text-2xl font-bold opacity-0"
+        data-animation="fadeIn"
+        data-delay="0.4"
+      >
+        Orari
+      </h2>
       <ul class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.5">
         <li><span class="font-semibold">Lunedì - Venerdì:</span> 09:30 - 12:00 / 16:00 - 22:30</li>
-        <li><span class="font-semibold">Sabato:</span> 16:00 - 22:30</li>
+        <li><span class="font-semibold">Sabato:</span> 16:00 - 23:30</li>
         <li><span class="font-semibold">Domenica:</span> Chiuso</li>
       </ul>
-      <h2 class="font-bold text-balance text-2xl pt-4 opacity-0"  data-animation="fadeIn" data-delay="0.6">Contattaci</h2>
+      <h2
+        class="text-balance pt-4 text-2xl font-bold opacity-0"
+        data-animation="fadeIn"
+        data-delay="0.6"
+      >
+        Contattaci
+      </h2>
       <ul class="my-4 text-xl opacity-0" data-animation="fadeIn" data-delay="0.7">
         <li>
           <span class="font-medium">Email:</span>
@@ -43,7 +68,11 @@ const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.98576
         </Button>
       </div>
     </div>
-    <div class="h-[450px] overflow-hidden rounded-lg bg-gray-100 mt-8 opacity-0" data-animation="fadeIn" data-delay="0.9">
+    <div
+      class="mt-8 h-[450px] overflow-hidden rounded-lg bg-gray-100 opacity-0"
+      data-animation="fadeIn"
+      data-delay="0.9"
+    >
       <iframe
         src={mapUrl}
         width="100%"
@@ -56,8 +85,6 @@ const mapUrl = `https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2862.98576
       </iframe>
     </div>
   </section>
-
-
 </Layout>
 
 <script>
